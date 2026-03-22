@@ -14,8 +14,12 @@ plugins:
   # TypeScript: protobuf types (Protobuf-ES)
   - remote: buf.build/bufbuild/es
     out: gen/ts # → contracts/gen/ts/
-    opt: target=ts
+    opt:
+      - target=ts
+      - import_extension=none # strip .js from imports — works with any bundler (webpack, vite, esbuild)
   # TypeScript: Connect RPC stubs
   - remote: buf.build/connectrpc/es
     out: gen/ts # → contracts/gen/ts/
-    opt: target=ts
+    opt:
+      - target=ts
+      - import_extension=none # strip .js from imports — works with any bundler (webpack, vite, esbuild)

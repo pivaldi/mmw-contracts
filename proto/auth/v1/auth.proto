@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package auth.v1;
 
-option go_package = "github.com/pivaldi/mmw/contracts/gen/go/auth/v1;authv1";
+option go_package = "github.com/pivaldi/mmw-contracts/gen/go/auth/v1;authv1";
 
 // AuthService provides functionalities for user authentication.
 service AuthService {
@@ -59,7 +59,7 @@ message ValidateTokenResponse {
 // --- ChangePassword ---
 
 message ChangePasswordRequest {
-  string user_id      = 1;
+  string user_id = 1;
   string old_password = 2;
   string new_password = 3;
 }
