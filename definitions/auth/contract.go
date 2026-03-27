@@ -5,17 +5,15 @@ import (
 	"fmt"
 
 	"github.com/google/uuid"
+	authv1 "github.com/pivaldi/mmw-contracts/gen/go/auth/v1"
 )
 
-// DTOs. TODO; should be protobuf generated types
-type UserDTO struct {
-	UUID  uuid.UUID
-	Login string
-}
+// User is the proto-generated user type, re-exported for contract consumers.
+type User = authv1.User
 
 // The Public Interface of the AuthService
 type AuthService interface {
-	GetUser(ctx context.Context, id string) (*UserDTO, error)
+	GetUser(ctx context.Context, id string) (*User, error)
 	// ValidateToken verifies the JWT and checks the session exists in the DB.
 	// Returns the userID on success, or an error if invalid/expired.
 	ValidateToken(ctx context.Context, token string) (uuid.UUID, error)
@@ -33,7 +31,7 @@ func NewInprocClient(server AuthService) *InprocClient {
 	return &InprocClient{server: server}
 }
 
-func (c *InprocClient) GetUser(ctx context.Context, id string) (*UserDTO, error) {
+func (c *InprocClient) GetUser(ctx context.Context, id string) (*User, error) {
 	u, err := c.server.GetUser(ctx, id)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
@@ -61,7 +59,7 @@ type NoopAuthService struct{}
 // compile-time assertion
 var _ AuthService = (*NoopAuthService)(nil)
 
-func (NoopAuthService) GetUser(_ context.Context, _ string) (*UserDTO, error) {
+func (NoopAuthService) GetUser(_ context.Context, _ string) (*User, error) {
 	return nil, ErrAuthUnavailable
 }
 

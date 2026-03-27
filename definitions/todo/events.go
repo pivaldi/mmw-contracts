@@ -1,14 +1,25 @@
-package deftodo
+package todo
 
-import "time"
+import (
+	todov1 "github.com/pivaldi/mmw-contracts/gen/go/todo/v1"
+)
 
 // The Topic Name (Routing Key)
-const TopicUserTasksDeleted = "todo.userTasks.deleted.v1"
+const (
+	TopicUserTasksDeleted  = "todo.userTasks.deleted.v1"
+	TopicUserTaskDeleted   = "todo.userTask.deleted.v1"
+	TopicUserTaskCreated   = "todo.userTasks.created.v1"
+	TopicUserTaskUpdated   = "todo.userTasks.updated.v1"
+	TopicUserTaskReopened  = "todo.userTasks.reopened.v1"
+	TopicUserTaskCompleted = "todo.userTasks.completed.v1"
+)
 
-// Define the Event Payload DTO
-// TODO: migrate to Protobuf, this struct should be swapped for the generated proto type
-type UserTasksDeletedEvent struct {
-	UserID    string    `json:"userId"`
-	TasksIDS  []int     `json:"tasksIds"`
-	DeletedAt time.Time `json:"deletedAt"`
+var AllEvents = []string{
+	TopicUserTasksDeleted,
+	TopicUserTaskCreated,
+	TopicUserTaskUpdated,
+	TopicUserTaskReopened,
+	TopicUserTaskCompleted,
 }
+
+type UserTasksDeletedEvent = todov1.UserTasksDeletedEvent

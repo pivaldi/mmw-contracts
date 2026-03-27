@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package auth.v1;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/pivaldi/mmw-contracts/gen/go/auth/v1;authv1";
 
 // AuthService provides functionalities for user authentication.
@@ -73,3 +75,17 @@ message DeleteUserRequest {
 }
 
 message DeleteUserResponse {}
+
+// --- Shared types ---
+
+// User represents a user account.
+message User {
+  string id = 1;
+  string login = 2;
+}
+
+// UserDeletedEvent is published to the message bus when a user account is deleted.
+message UserDeletedEvent {
+  string user_id = 1;
+  google.protobuf.Timestamp deleted_at = 2;
+}

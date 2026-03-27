@@ -953,6 +953,67 @@ func (x *ListTodosResponse) GetTotalCount() int32 {
 	return 0
 }
 
+// UserTasksDeletedEvent is published when all tasks for a deleted user are removed.
+type UserTasksDeletedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TaskIds       []int64                `protobuf:"varint,2,rep,packed,name=task_ids,json=taskIds,proto3" json:"task_ids,omitempty"`
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserTasksDeletedEvent) Reset() {
+	*x = UserTasksDeletedEvent{}
+	mi := &file_todo_v1_todo_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserTasksDeletedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserTasksDeletedEvent) ProtoMessage() {}
+
+func (x *UserTasksDeletedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserTasksDeletedEvent.ProtoReflect.Descriptor instead.
+func (*UserTasksDeletedEvent) Descriptor() ([]byte, []int) {
+	return file_todo_v1_todo_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UserTasksDeletedEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserTasksDeletedEvent) GetTaskIds() []int64 {
+	if x != nil {
+		return x.TaskIds
+	}
+	return nil
+}
+
+func (x *UserTasksDeletedEvent) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
+}
+
 var File_todo_v1_todo_proto protoreflect.FileDescriptor
 
 const file_todo_v1_todo_proto_rawDesc = "" +
@@ -1017,7 +1078,12 @@ const file_todo_v1_todo_proto_rawDesc = "" +
 	"\x11ListTodosResponse\x12#\n" +
 	"\x05todos\x18\x01 \x03(\v2\r.todo.v1.TodoR\x05todos\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount*\x95\x01\n" +
+	"totalCount\"\x86\x01\n" +
+	"\x15UserTasksDeletedEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\btask_ids\x18\x02 \x03(\x03R\ataskIds\x129\n" +
+	"\n" +
+	"deleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt*\x95\x01\n" +
 	"\n" +
 	"TaskStatus\x12\x1b\n" +
 	"\x17TASK_STATUS_UNSPECIFIED\x10\x00\x12\x17\n" +
@@ -1057,7 +1123,7 @@ func file_todo_v1_todo_proto_rawDescGZIP() []byte {
 }
 
 var file_todo_v1_todo_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_todo_v1_todo_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_todo_v1_todo_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_todo_v1_todo_proto_goTypes = []any{
 	(TaskStatus)(0),               // 0: todo.v1.TaskStatus
 	(Priority)(0),                 // 1: todo.v1.Priority
@@ -1076,20 +1142,21 @@ var file_todo_v1_todo_proto_goTypes = []any{
 	(*DeleteTodoResponse)(nil),    // 14: todo.v1.DeleteTodoResponse
 	(*ListTodosRequest)(nil),      // 15: todo.v1.ListTodosRequest
 	(*ListTodosResponse)(nil),     // 16: todo.v1.ListTodosResponse
-	(*timestamppb.Timestamp)(nil), // 17: google.protobuf.Timestamp
+	(*UserTasksDeletedEvent)(nil), // 17: todo.v1.UserTasksDeletedEvent
+	(*timestamppb.Timestamp)(nil), // 18: google.protobuf.Timestamp
 }
 var file_todo_v1_todo_proto_depIdxs = []int32{
 	0,  // 0: todo.v1.Todo.status:type_name -> todo.v1.TaskStatus
 	1,  // 1: todo.v1.Todo.priority:type_name -> todo.v1.Priority
-	17, // 2: todo.v1.Todo.due_date:type_name -> google.protobuf.Timestamp
-	17, // 3: todo.v1.Todo.created_at:type_name -> google.protobuf.Timestamp
-	17, // 4: todo.v1.Todo.updated_at:type_name -> google.protobuf.Timestamp
+	18, // 2: todo.v1.Todo.due_date:type_name -> google.protobuf.Timestamp
+	18, // 3: todo.v1.Todo.created_at:type_name -> google.protobuf.Timestamp
+	18, // 4: todo.v1.Todo.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 5: todo.v1.CreateTodoRequest.priority:type_name -> todo.v1.Priority
-	17, // 6: todo.v1.CreateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
+	18, // 6: todo.v1.CreateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
 	2,  // 7: todo.v1.CreateTodoResponse.todo:type_name -> todo.v1.Todo
 	2,  // 8: todo.v1.GetTodoResponse.todo:type_name -> todo.v1.Todo
 	1,  // 9: todo.v1.UpdateTodoRequest.priority:type_name -> todo.v1.Priority
-	17, // 10: todo.v1.UpdateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
+	18, // 10: todo.v1.UpdateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
 	0,  // 11: todo.v1.UpdateTodoRequest.status:type_name -> todo.v1.TaskStatus
 	2,  // 12: todo.v1.UpdateTodoResponse.todo:type_name -> todo.v1.Todo
 	2,  // 13: todo.v1.CompleteTodoResponse.todo:type_name -> todo.v1.Todo
@@ -1097,25 +1164,26 @@ var file_todo_v1_todo_proto_depIdxs = []int32{
 	0,  // 15: todo.v1.ListTodosRequest.status:type_name -> todo.v1.TaskStatus
 	1,  // 16: todo.v1.ListTodosRequest.priority:type_name -> todo.v1.Priority
 	2,  // 17: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
-	3,  // 18: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
-	5,  // 19: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
-	7,  // 20: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
-	9,  // 21: todo.v1.TodoService.CompleteTodo:input_type -> todo.v1.CompleteTodoRequest
-	11, // 22: todo.v1.TodoService.ReopenTodo:input_type -> todo.v1.ReopenTodoRequest
-	13, // 23: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
-	15, // 24: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
-	4,  // 25: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.CreateTodoResponse
-	6,  // 26: todo.v1.TodoService.GetTodo:output_type -> todo.v1.GetTodoResponse
-	8,  // 27: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.UpdateTodoResponse
-	10, // 28: todo.v1.TodoService.CompleteTodo:output_type -> todo.v1.CompleteTodoResponse
-	12, // 29: todo.v1.TodoService.ReopenTodo:output_type -> todo.v1.ReopenTodoResponse
-	14, // 30: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.DeleteTodoResponse
-	16, // 31: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
-	25, // [25:32] is the sub-list for method output_type
-	18, // [18:25] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	18, // 18: todo.v1.UserTasksDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
+	3,  // 19: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
+	5,  // 20: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
+	7,  // 21: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
+	9,  // 22: todo.v1.TodoService.CompleteTodo:input_type -> todo.v1.CompleteTodoRequest
+	11, // 23: todo.v1.TodoService.ReopenTodo:input_type -> todo.v1.ReopenTodoRequest
+	13, // 24: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
+	15, // 25: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
+	4,  // 26: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.CreateTodoResponse
+	6,  // 27: todo.v1.TodoService.GetTodo:output_type -> todo.v1.GetTodoResponse
+	8,  // 28: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.UpdateTodoResponse
+	10, // 29: todo.v1.TodoService.CompleteTodo:output_type -> todo.v1.CompleteTodoResponse
+	12, // 30: todo.v1.TodoService.ReopenTodo:output_type -> todo.v1.ReopenTodoResponse
+	14, // 31: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.DeleteTodoResponse
+	16, // 32: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
+	26, // [26:33] is the sub-list for method output_type
+	19, // [19:26] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_todo_v1_todo_proto_init() }
@@ -1131,7 +1199,7 @@ func file_todo_v1_todo_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_todo_v1_todo_proto_rawDesc), len(file_todo_v1_todo_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   15,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -50,6 +50,6 @@ func (c *HttpClient) ValidateToken(ctx context.Context, token string) (uuid.UUID
 
 // GetUser is not yet exposed as an RPC in the auth service proto.
 // It returns ErrAuthUnavailable when called through the HTTP client.
-func (c *HttpClient) GetUser(_ context.Context, _ string) (*UserDTO, error) {
+func (c *HttpClient) GetUser(_ context.Context, _ string) (*User, error) {
 	return nil, ErrAuthUnavailable
 }
