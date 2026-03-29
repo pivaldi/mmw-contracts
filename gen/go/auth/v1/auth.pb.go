@@ -22,6 +22,72 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// AuthErrorCode enumerates all domain errors for the auth module.
+// Shared between Go (via platform.ErrorCode cast) and TypeScript (via generated enum).
+type AuthErrorCode int32
+
+const (
+	AuthErrorCode_AUTH_ERROR_CODE_UNSPECIFIED AuthErrorCode = 0
+	// Validation
+	AuthErrorCode_AUTH_ERROR_CODE_INVALID_LOGIN    AuthErrorCode = 1
+	AuthErrorCode_AUTH_ERROR_CODE_INVALID_PASSWORD AuthErrorCode = 2
+	// Authentication
+	AuthErrorCode_AUTH_ERROR_CODE_INVALID_CREDENTIALS AuthErrorCode = 3
+	AuthErrorCode_AUTH_ERROR_CODE_INVALID_TOKEN       AuthErrorCode = 4
+	// Resources
+	AuthErrorCode_AUTH_ERROR_CODE_USER_NOT_FOUND      AuthErrorCode = 5
+	AuthErrorCode_AUTH_ERROR_CODE_USER_ALREADY_EXISTS AuthErrorCode = 6
+)
+
+// Enum value maps for AuthErrorCode.
+var (
+	AuthErrorCode_name = map[int32]string{
+		0: "AUTH_ERROR_CODE_UNSPECIFIED",
+		1: "AUTH_ERROR_CODE_INVALID_LOGIN",
+		2: "AUTH_ERROR_CODE_INVALID_PASSWORD",
+		3: "AUTH_ERROR_CODE_INVALID_CREDENTIALS",
+		4: "AUTH_ERROR_CODE_INVALID_TOKEN",
+		5: "AUTH_ERROR_CODE_USER_NOT_FOUND",
+		6: "AUTH_ERROR_CODE_USER_ALREADY_EXISTS",
+	}
+	AuthErrorCode_value = map[string]int32{
+		"AUTH_ERROR_CODE_UNSPECIFIED":         0,
+		"AUTH_ERROR_CODE_INVALID_LOGIN":       1,
+		"AUTH_ERROR_CODE_INVALID_PASSWORD":    2,
+		"AUTH_ERROR_CODE_INVALID_CREDENTIALS": 3,
+		"AUTH_ERROR_CODE_INVALID_TOKEN":       4,
+		"AUTH_ERROR_CODE_USER_NOT_FOUND":      5,
+		"AUTH_ERROR_CODE_USER_ALREADY_EXISTS": 6,
+	}
+)
+
+func (x AuthErrorCode) Enum() *AuthErrorCode {
+	p := new(AuthErrorCode)
+	*p = x
+	return p
+}
+
+func (x AuthErrorCode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (AuthErrorCode) Descriptor() protoreflect.EnumDescriptor {
+	return file_auth_v1_auth_proto_enumTypes[0].Descriptor()
+}
+
+func (AuthErrorCode) Type() protoreflect.EnumType {
+	return &file_auth_v1_auth_proto_enumTypes[0]
+}
+
+func (x AuthErrorCode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use AuthErrorCode.Descriptor instead.
+func (AuthErrorCode) EnumDescriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{0}
+}
+
 type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
@@ -635,7 +701,15 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x10UserDeletedEvent\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x129\n" +
 	"\n" +
-	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt2\xf0\x02\n" +
+	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt*\x92\x02\n" +
+	"\rAuthErrorCode\x12\x1f\n" +
+	"\x1bAUTH_ERROR_CODE_UNSPECIFIED\x10\x00\x12!\n" +
+	"\x1dAUTH_ERROR_CODE_INVALID_LOGIN\x10\x01\x12$\n" +
+	" AUTH_ERROR_CODE_INVALID_PASSWORD\x10\x02\x12'\n" +
+	"#AUTH_ERROR_CODE_INVALID_CREDENTIALS\x10\x03\x12!\n" +
+	"\x1dAUTH_ERROR_CODE_INVALID_TOKEN\x10\x04\x12\"\n" +
+	"\x1eAUTH_ERROR_CODE_USER_NOT_FOUND\x10\x05\x12'\n" +
+	"#AUTH_ERROR_CODE_USER_ALREADY_EXISTS\x10\x062\xf0\x02\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12N\n" +
@@ -656,34 +730,36 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 	return file_auth_v1_auth_proto_rawDescData
 }
 
+var file_auth_v1_auth_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_auth_v1_auth_proto_goTypes = []any{
-	(*RegisterRequest)(nil),        // 0: auth.v1.RegisterRequest
-	(*RegisterResponse)(nil),       // 1: auth.v1.RegisterResponse
-	(*LoginRequest)(nil),           // 2: auth.v1.LoginRequest
-	(*LoginResponse)(nil),          // 3: auth.v1.LoginResponse
-	(*ValidateTokenRequest)(nil),   // 4: auth.v1.ValidateTokenRequest
-	(*ValidateTokenResponse)(nil),  // 5: auth.v1.ValidateTokenResponse
-	(*ChangePasswordRequest)(nil),  // 6: auth.v1.ChangePasswordRequest
-	(*ChangePasswordResponse)(nil), // 7: auth.v1.ChangePasswordResponse
-	(*DeleteUserRequest)(nil),      // 8: auth.v1.DeleteUserRequest
-	(*DeleteUserResponse)(nil),     // 9: auth.v1.DeleteUserResponse
-	(*User)(nil),                   // 10: auth.v1.User
-	(*UserDeletedEvent)(nil),       // 11: auth.v1.UserDeletedEvent
-	(*timestamppb.Timestamp)(nil),  // 12: google.protobuf.Timestamp
+	(AuthErrorCode)(0),             // 0: auth.v1.AuthErrorCode
+	(*RegisterRequest)(nil),        // 1: auth.v1.RegisterRequest
+	(*RegisterResponse)(nil),       // 2: auth.v1.RegisterResponse
+	(*LoginRequest)(nil),           // 3: auth.v1.LoginRequest
+	(*LoginResponse)(nil),          // 4: auth.v1.LoginResponse
+	(*ValidateTokenRequest)(nil),   // 5: auth.v1.ValidateTokenRequest
+	(*ValidateTokenResponse)(nil),  // 6: auth.v1.ValidateTokenResponse
+	(*ChangePasswordRequest)(nil),  // 7: auth.v1.ChangePasswordRequest
+	(*ChangePasswordResponse)(nil), // 8: auth.v1.ChangePasswordResponse
+	(*DeleteUserRequest)(nil),      // 9: auth.v1.DeleteUserRequest
+	(*DeleteUserResponse)(nil),     // 10: auth.v1.DeleteUserResponse
+	(*User)(nil),                   // 11: auth.v1.User
+	(*UserDeletedEvent)(nil),       // 12: auth.v1.UserDeletedEvent
+	(*timestamppb.Timestamp)(nil),  // 13: google.protobuf.Timestamp
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	12, // 0: auth.v1.UserDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
-	0,  // 1: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
-	2,  // 2: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	4,  // 3: auth.v1.AuthService.ValidateToken:input_type -> auth.v1.ValidateTokenRequest
-	6,  // 4: auth.v1.AuthService.ChangePassword:input_type -> auth.v1.ChangePasswordRequest
-	8,  // 5: auth.v1.AuthService.DeleteUser:input_type -> auth.v1.DeleteUserRequest
-	1,  // 6: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	3,  // 7: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
-	5,  // 8: auth.v1.AuthService.ValidateToken:output_type -> auth.v1.ValidateTokenResponse
-	7,  // 9: auth.v1.AuthService.ChangePassword:output_type -> auth.v1.ChangePasswordResponse
-	9,  // 10: auth.v1.AuthService.DeleteUser:output_type -> auth.v1.DeleteUserResponse
+	13, // 0: auth.v1.UserDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
+	1,  // 1: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
+	3,  // 2: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
+	5,  // 3: auth.v1.AuthService.ValidateToken:input_type -> auth.v1.ValidateTokenRequest
+	7,  // 4: auth.v1.AuthService.ChangePassword:input_type -> auth.v1.ChangePasswordRequest
+	9,  // 5: auth.v1.AuthService.DeleteUser:input_type -> auth.v1.DeleteUserRequest
+	2,  // 6: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
+	4,  // 7: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
+	6,  // 8: auth.v1.AuthService.ValidateToken:output_type -> auth.v1.ValidateTokenResponse
+	8,  // 9: auth.v1.AuthService.ChangePassword:output_type -> auth.v1.ChangePasswordResponse
+	10, // 10: auth.v1.AuthService.DeleteUser:output_type -> auth.v1.DeleteUserResponse
 	6,  // [6:11] is the sub-list for method output_type
 	1,  // [1:6] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
@@ -701,13 +777,14 @@ func file_auth_v1_auth_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_auth_proto_rawDesc), len(file_auth_v1_auth_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_auth_v1_auth_proto_goTypes,
 		DependencyIndexes: file_auth_v1_auth_proto_depIdxs,
+		EnumInfos:         file_auth_v1_auth_proto_enumTypes,
 		MessageInfos:      file_auth_v1_auth_proto_msgTypes,
 	}.Build()
 	File_auth_v1_auth_proto = out.File

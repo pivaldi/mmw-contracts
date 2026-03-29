@@ -2,8 +2,8 @@
 // @generated from file auth/v1/auth.proto (package auth.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file auth/v1/auth.proto.
  */
 export const file_auth_v1_auth: GenFile = /*@__PURE__*/
-  fileDesc("ChJhdXRoL3YxL2F1dGgucHJvdG8SB2F1dGgudjEiMgoPUmVnaXN0ZXJSZXF1ZXN0Eg0KBWxvZ2luGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIiMKEFJlZ2lzdGVyUmVzcG9uc2USDwoHdXNlcl9pZBgBIAEoCSIvCgxMb2dpblJlcXVlc3QSDQoFbG9naW4YASABKAkSEAoIcGFzc3dvcmQYAiABKAkiLwoNTG9naW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIPCgd1c2VyX2lkGAIgASgJIiUKFFZhbGlkYXRlVG9rZW5SZXF1ZXN0Eg0KBXRva2VuGAEgASgJIjoKFVZhbGlkYXRlVG9rZW5SZXNwb25zZRIPCgd1c2VyX2lkGAEgASgJEhAKCGlzX3ZhbGlkGAIgASgIIlQKFUNoYW5nZVBhc3N3b3JkUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJEhQKDG9sZF9wYXNzd29yZBgCIAEoCRIUCgxuZXdfcGFzc3dvcmQYAyABKAkiGAoWQ2hhbmdlUGFzc3dvcmRSZXNwb25zZSIkChFEZWxldGVVc2VyUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJIhQKEkRlbGV0ZVVzZXJSZXNwb25zZSIhCgRVc2VyEgoKAmlkGAEgASgJEg0KBWxvZ2luGAIgASgJIlMKEFVzZXJEZWxldGVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIuCgpkZWxldGVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDLwAgoLQXV0aFNlcnZpY2USPwoIUmVnaXN0ZXISGC5hdXRoLnYxLlJlZ2lzdGVyUmVxdWVzdBoZLmF1dGgudjEuUmVnaXN0ZXJSZXNwb25zZRI2CgVMb2dpbhIVLmF1dGgudjEuTG9naW5SZXF1ZXN0GhYuYXV0aC52MS5Mb2dpblJlc3BvbnNlEk4KDVZhbGlkYXRlVG9rZW4SHS5hdXRoLnYxLlZhbGlkYXRlVG9rZW5SZXF1ZXN0Gh4uYXV0aC52MS5WYWxpZGF0ZVRva2VuUmVzcG9uc2USUQoOQ2hhbmdlUGFzc3dvcmQSHi5hdXRoLnYxLkNoYW5nZVBhc3N3b3JkUmVxdWVzdBofLmF1dGgudjEuQ2hhbmdlUGFzc3dvcmRSZXNwb25zZRJFCgpEZWxldGVVc2VyEhouYXV0aC52MS5EZWxldGVVc2VyUmVxdWVzdBobLmF1dGgudjEuRGVsZXRlVXNlclJlc3BvbnNlQjhaNmdpdGh1Yi5jb20vcGl2YWxkaS9tbXctY29udHJhY3RzL2dlbi9nby9hdXRoL3YxO2F1dGh2MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("ChJhdXRoL3YxL2F1dGgucHJvdG8SB2F1dGgudjEiMgoPUmVnaXN0ZXJSZXF1ZXN0Eg0KBWxvZ2luGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIiMKEFJlZ2lzdGVyUmVzcG9uc2USDwoHdXNlcl9pZBgBIAEoCSIvCgxMb2dpblJlcXVlc3QSDQoFbG9naW4YASABKAkSEAoIcGFzc3dvcmQYAiABKAkiLwoNTG9naW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIPCgd1c2VyX2lkGAIgASgJIiUKFFZhbGlkYXRlVG9rZW5SZXF1ZXN0Eg0KBXRva2VuGAEgASgJIjoKFVZhbGlkYXRlVG9rZW5SZXNwb25zZRIPCgd1c2VyX2lkGAEgASgJEhAKCGlzX3ZhbGlkGAIgASgIIlQKFUNoYW5nZVBhc3N3b3JkUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJEhQKDG9sZF9wYXNzd29yZBgCIAEoCRIUCgxuZXdfcGFzc3dvcmQYAyABKAkiGAoWQ2hhbmdlUGFzc3dvcmRSZXNwb25zZSIkChFEZWxldGVVc2VyUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJIhQKEkRlbGV0ZVVzZXJSZXNwb25zZSIhCgRVc2VyEgoKAmlkGAEgASgJEg0KBWxvZ2luGAIgASgJIlMKEFVzZXJEZWxldGVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIuCgpkZWxldGVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCqSAgoNQXV0aEVycm9yQ29kZRIfChtBVVRIX0VSUk9SX0NPREVfVU5TUEVDSUZJRUQQABIhCh1BVVRIX0VSUk9SX0NPREVfSU5WQUxJRF9MT0dJThABEiQKIEFVVEhfRVJST1JfQ09ERV9JTlZBTElEX1BBU1NXT1JEEAISJwojQVVUSF9FUlJPUl9DT0RFX0lOVkFMSURfQ1JFREVOVElBTFMQAxIhCh1BVVRIX0VSUk9SX0NPREVfSU5WQUxJRF9UT0tFThAEEiIKHkFVVEhfRVJST1JfQ09ERV9VU0VSX05PVF9GT1VORBAFEicKI0FVVEhfRVJST1JfQ09ERV9VU0VSX0FMUkVBRFlfRVhJU1RTEAYy8AIKC0F1dGhTZXJ2aWNlEj8KCFJlZ2lzdGVyEhguYXV0aC52MS5SZWdpc3RlclJlcXVlc3QaGS5hdXRoLnYxLlJlZ2lzdGVyUmVzcG9uc2USNgoFTG9naW4SFS5hdXRoLnYxLkxvZ2luUmVxdWVzdBoWLmF1dGgudjEuTG9naW5SZXNwb25zZRJOCg1WYWxpZGF0ZVRva2VuEh0uYXV0aC52MS5WYWxpZGF0ZVRva2VuUmVxdWVzdBoeLmF1dGgudjEuVmFsaWRhdGVUb2tlblJlc3BvbnNlElEKDkNoYW5nZVBhc3N3b3JkEh4uYXV0aC52MS5DaGFuZ2VQYXNzd29yZFJlcXVlc3QaHy5hdXRoLnYxLkNoYW5nZVBhc3N3b3JkUmVzcG9uc2USRQoKRGVsZXRlVXNlchIaLmF1dGgudjEuRGVsZXRlVXNlclJlcXVlc3QaGy5hdXRoLnYxLkRlbGV0ZVVzZXJSZXNwb25zZUI4WjZnaXRodWIuY29tL3BpdmFsZGkvbW13LWNvbnRyYWN0cy9nZW4vZ28vYXV0aC92MTthdXRodjFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message auth.v1.RegisterRequest
@@ -253,6 +253,61 @@ export type UserDeletedEvent = Message<"auth.v1.UserDeletedEvent"> & {
  */
 export const UserDeletedEventSchema: GenMessage<UserDeletedEvent> = /*@__PURE__*/
   messageDesc(file_auth_v1_auth, 11);
+
+/**
+ * AuthErrorCode enumerates all domain errors for the auth module.
+ * Shared between Go (via platform.ErrorCode cast) and TypeScript (via generated enum).
+ *
+ * @generated from enum auth.v1.AuthErrorCode
+ */
+export enum AuthErrorCode {
+  /**
+   * @generated from enum value: AUTH_ERROR_CODE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Validation
+   *
+   * @generated from enum value: AUTH_ERROR_CODE_INVALID_LOGIN = 1;
+   */
+  INVALID_LOGIN = 1,
+
+  /**
+   * @generated from enum value: AUTH_ERROR_CODE_INVALID_PASSWORD = 2;
+   */
+  INVALID_PASSWORD = 2,
+
+  /**
+   * Authentication
+   *
+   * @generated from enum value: AUTH_ERROR_CODE_INVALID_CREDENTIALS = 3;
+   */
+  INVALID_CREDENTIALS = 3,
+
+  /**
+   * @generated from enum value: AUTH_ERROR_CODE_INVALID_TOKEN = 4;
+   */
+  INVALID_TOKEN = 4,
+
+  /**
+   * Resources
+   *
+   * @generated from enum value: AUTH_ERROR_CODE_USER_NOT_FOUND = 5;
+   */
+  USER_NOT_FOUND = 5,
+
+  /**
+   * @generated from enum value: AUTH_ERROR_CODE_USER_ALREADY_EXISTS = 6;
+   */
+  USER_ALREADY_EXISTS = 6,
+}
+
+/**
+ * Describes the enum auth.v1.AuthErrorCode.
+ */
+export const AuthErrorCodeSchema: GenEnum<AuthErrorCode> = /*@__PURE__*/
+  enumDesc(file_auth_v1_auth, 0);
 
 /**
  * AuthService provides functionalities for user authentication.
