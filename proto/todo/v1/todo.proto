@@ -133,3 +133,20 @@ message UserTasksDeletedEvent {
   repeated int64 task_ids = 2;
   google.protobuf.Timestamp deleted_at = 3;
 }
+
+// TodoErrorCode enumerates all domain errors for the todo module.
+// Shared between Go (via platform.ErrorCode cast) and TypeScript (via generated enum).
+enum TodoErrorCode {
+  TODO_ERROR_CODE_UNSPECIFIED               = 0;
+  // Validation
+  TODO_ERROR_CODE_INVALID_TITLE             = 1;
+  TODO_ERROR_CODE_INVALID_DUE_DATE          = 2;
+  TODO_ERROR_CODE_INVALID_ID                = 3;
+  // Business rules
+  TODO_ERROR_CODE_NOT_FOUND                 = 4;
+  TODO_ERROR_CODE_ALREADY_EXISTS            = 5;
+  TODO_ERROR_CODE_CANNOT_COMPLETE_CANCELLED = 6;
+  TODO_ERROR_CODE_CANNOT_MODIFY_COMPLETED   = 7;
+  // State transitions
+  TODO_ERROR_CODE_INVALID_STATUS_TRANSITION = 8;
+}

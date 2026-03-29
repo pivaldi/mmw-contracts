@@ -134,6 +134,78 @@ func (Priority) EnumDescriptor() ([]byte, []int) {
 	return file_todo_v1_todo_proto_rawDescGZIP(), []int{1}
 }
 
+// TodoErrorCode enumerates all domain errors for the todo module.
+// Shared between Go (via platform.ErrorCode cast) and TypeScript (via generated enum).
+type TodoErrorCode int32
+
+const (
+	TodoErrorCode_TODO_ERROR_CODE_UNSPECIFIED TodoErrorCode = 0
+	// Validation
+	TodoErrorCode_TODO_ERROR_CODE_INVALID_TITLE    TodoErrorCode = 1
+	TodoErrorCode_TODO_ERROR_CODE_INVALID_DUE_DATE TodoErrorCode = 2
+	TodoErrorCode_TODO_ERROR_CODE_INVALID_ID       TodoErrorCode = 3
+	// Business rules
+	TodoErrorCode_TODO_ERROR_CODE_NOT_FOUND                 TodoErrorCode = 4
+	TodoErrorCode_TODO_ERROR_CODE_ALREADY_EXISTS            TodoErrorCode = 5
+	TodoErrorCode_TODO_ERROR_CODE_CANNOT_COMPLETE_CANCELLED TodoErrorCode = 6
+	TodoErrorCode_TODO_ERROR_CODE_CANNOT_MODIFY_COMPLETED   TodoErrorCode = 7
+	// State transitions
+	TodoErrorCode_TODO_ERROR_CODE_INVALID_STATUS_TRANSITION TodoErrorCode = 8
+)
+
+// Enum value maps for TodoErrorCode.
+var (
+	TodoErrorCode_name = map[int32]string{
+		0: "TODO_ERROR_CODE_UNSPECIFIED",
+		1: "TODO_ERROR_CODE_INVALID_TITLE",
+		2: "TODO_ERROR_CODE_INVALID_DUE_DATE",
+		3: "TODO_ERROR_CODE_INVALID_ID",
+		4: "TODO_ERROR_CODE_NOT_FOUND",
+		5: "TODO_ERROR_CODE_ALREADY_EXISTS",
+		6: "TODO_ERROR_CODE_CANNOT_COMPLETE_CANCELLED",
+		7: "TODO_ERROR_CODE_CANNOT_MODIFY_COMPLETED",
+		8: "TODO_ERROR_CODE_INVALID_STATUS_TRANSITION",
+	}
+	TodoErrorCode_value = map[string]int32{
+		"TODO_ERROR_CODE_UNSPECIFIED":               0,
+		"TODO_ERROR_CODE_INVALID_TITLE":             1,
+		"TODO_ERROR_CODE_INVALID_DUE_DATE":          2,
+		"TODO_ERROR_CODE_INVALID_ID":                3,
+		"TODO_ERROR_CODE_NOT_FOUND":                 4,
+		"TODO_ERROR_CODE_ALREADY_EXISTS":            5,
+		"TODO_ERROR_CODE_CANNOT_COMPLETE_CANCELLED": 6,
+		"TODO_ERROR_CODE_CANNOT_MODIFY_COMPLETED":   7,
+		"TODO_ERROR_CODE_INVALID_STATUS_TRANSITION": 8,
+	}
+)
+
+func (x TodoErrorCode) Enum() *TodoErrorCode {
+	p := new(TodoErrorCode)
+	*p = x
+	return p
+}
+
+func (x TodoErrorCode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TodoErrorCode) Descriptor() protoreflect.EnumDescriptor {
+	return file_todo_v1_todo_proto_enumTypes[2].Descriptor()
+}
+
+func (TodoErrorCode) Type() protoreflect.EnumType {
+	return &file_todo_v1_todo_proto_enumTypes[2]
+}
+
+func (x TodoErrorCode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TodoErrorCode.Descriptor instead.
+func (TodoErrorCode) EnumDescriptor() ([]byte, []int) {
+	return file_todo_v1_todo_proto_rawDescGZIP(), []int{2}
+}
+
 // Todo represents a todo item with all its properties
 type Todo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1096,7 +1168,17 @@ const file_todo_v1_todo_proto_rawDesc = "" +
 	"\fPRIORITY_LOW\x10\x01\x12\x13\n" +
 	"\x0fPRIORITY_MEDIUM\x10\x02\x12\x11\n" +
 	"\rPRIORITY_HIGH\x10\x03\x12\x13\n" +
-	"\x0fPRIORITY_URGENT\x10\x042\xf8\x03\n" +
+	"\x0fPRIORITY_URGENT\x10\x04*\xe7\x02\n" +
+	"\rTodoErrorCode\x12\x1f\n" +
+	"\x1bTODO_ERROR_CODE_UNSPECIFIED\x10\x00\x12!\n" +
+	"\x1dTODO_ERROR_CODE_INVALID_TITLE\x10\x01\x12$\n" +
+	" TODO_ERROR_CODE_INVALID_DUE_DATE\x10\x02\x12\x1e\n" +
+	"\x1aTODO_ERROR_CODE_INVALID_ID\x10\x03\x12\x1d\n" +
+	"\x19TODO_ERROR_CODE_NOT_FOUND\x10\x04\x12\"\n" +
+	"\x1eTODO_ERROR_CODE_ALREADY_EXISTS\x10\x05\x12-\n" +
+	")TODO_ERROR_CODE_CANNOT_COMPLETE_CANCELLED\x10\x06\x12+\n" +
+	"'TODO_ERROR_CODE_CANNOT_MODIFY_COMPLETED\x10\a\x12-\n" +
+	")TODO_ERROR_CODE_INVALID_STATUS_TRANSITION\x10\b2\xf8\x03\n" +
 	"\vTodoService\x12E\n" +
 	"\n" +
 	"CreateTodo\x12\x1a.todo.v1.CreateTodoRequest\x1a\x1b.todo.v1.CreateTodoResponse\x12<\n" +
@@ -1122,63 +1204,64 @@ func file_todo_v1_todo_proto_rawDescGZIP() []byte {
 	return file_todo_v1_todo_proto_rawDescData
 }
 
-var file_todo_v1_todo_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_todo_v1_todo_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_todo_v1_todo_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_todo_v1_todo_proto_goTypes = []any{
 	(TaskStatus)(0),               // 0: todo.v1.TaskStatus
 	(Priority)(0),                 // 1: todo.v1.Priority
-	(*Todo)(nil),                  // 2: todo.v1.Todo
-	(*CreateTodoRequest)(nil),     // 3: todo.v1.CreateTodoRequest
-	(*CreateTodoResponse)(nil),    // 4: todo.v1.CreateTodoResponse
-	(*GetTodoRequest)(nil),        // 5: todo.v1.GetTodoRequest
-	(*GetTodoResponse)(nil),       // 6: todo.v1.GetTodoResponse
-	(*UpdateTodoRequest)(nil),     // 7: todo.v1.UpdateTodoRequest
-	(*UpdateTodoResponse)(nil),    // 8: todo.v1.UpdateTodoResponse
-	(*CompleteTodoRequest)(nil),   // 9: todo.v1.CompleteTodoRequest
-	(*CompleteTodoResponse)(nil),  // 10: todo.v1.CompleteTodoResponse
-	(*ReopenTodoRequest)(nil),     // 11: todo.v1.ReopenTodoRequest
-	(*ReopenTodoResponse)(nil),    // 12: todo.v1.ReopenTodoResponse
-	(*DeleteTodoRequest)(nil),     // 13: todo.v1.DeleteTodoRequest
-	(*DeleteTodoResponse)(nil),    // 14: todo.v1.DeleteTodoResponse
-	(*ListTodosRequest)(nil),      // 15: todo.v1.ListTodosRequest
-	(*ListTodosResponse)(nil),     // 16: todo.v1.ListTodosResponse
-	(*UserTasksDeletedEvent)(nil), // 17: todo.v1.UserTasksDeletedEvent
-	(*timestamppb.Timestamp)(nil), // 18: google.protobuf.Timestamp
+	(TodoErrorCode)(0),            // 2: todo.v1.TodoErrorCode
+	(*Todo)(nil),                  // 3: todo.v1.Todo
+	(*CreateTodoRequest)(nil),     // 4: todo.v1.CreateTodoRequest
+	(*CreateTodoResponse)(nil),    // 5: todo.v1.CreateTodoResponse
+	(*GetTodoRequest)(nil),        // 6: todo.v1.GetTodoRequest
+	(*GetTodoResponse)(nil),       // 7: todo.v1.GetTodoResponse
+	(*UpdateTodoRequest)(nil),     // 8: todo.v1.UpdateTodoRequest
+	(*UpdateTodoResponse)(nil),    // 9: todo.v1.UpdateTodoResponse
+	(*CompleteTodoRequest)(nil),   // 10: todo.v1.CompleteTodoRequest
+	(*CompleteTodoResponse)(nil),  // 11: todo.v1.CompleteTodoResponse
+	(*ReopenTodoRequest)(nil),     // 12: todo.v1.ReopenTodoRequest
+	(*ReopenTodoResponse)(nil),    // 13: todo.v1.ReopenTodoResponse
+	(*DeleteTodoRequest)(nil),     // 14: todo.v1.DeleteTodoRequest
+	(*DeleteTodoResponse)(nil),    // 15: todo.v1.DeleteTodoResponse
+	(*ListTodosRequest)(nil),      // 16: todo.v1.ListTodosRequest
+	(*ListTodosResponse)(nil),     // 17: todo.v1.ListTodosResponse
+	(*UserTasksDeletedEvent)(nil), // 18: todo.v1.UserTasksDeletedEvent
+	(*timestamppb.Timestamp)(nil), // 19: google.protobuf.Timestamp
 }
 var file_todo_v1_todo_proto_depIdxs = []int32{
 	0,  // 0: todo.v1.Todo.status:type_name -> todo.v1.TaskStatus
 	1,  // 1: todo.v1.Todo.priority:type_name -> todo.v1.Priority
-	18, // 2: todo.v1.Todo.due_date:type_name -> google.protobuf.Timestamp
-	18, // 3: todo.v1.Todo.created_at:type_name -> google.protobuf.Timestamp
-	18, // 4: todo.v1.Todo.updated_at:type_name -> google.protobuf.Timestamp
+	19, // 2: todo.v1.Todo.due_date:type_name -> google.protobuf.Timestamp
+	19, // 3: todo.v1.Todo.created_at:type_name -> google.protobuf.Timestamp
+	19, // 4: todo.v1.Todo.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 5: todo.v1.CreateTodoRequest.priority:type_name -> todo.v1.Priority
-	18, // 6: todo.v1.CreateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
-	2,  // 7: todo.v1.CreateTodoResponse.todo:type_name -> todo.v1.Todo
-	2,  // 8: todo.v1.GetTodoResponse.todo:type_name -> todo.v1.Todo
+	19, // 6: todo.v1.CreateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
+	3,  // 7: todo.v1.CreateTodoResponse.todo:type_name -> todo.v1.Todo
+	3,  // 8: todo.v1.GetTodoResponse.todo:type_name -> todo.v1.Todo
 	1,  // 9: todo.v1.UpdateTodoRequest.priority:type_name -> todo.v1.Priority
-	18, // 10: todo.v1.UpdateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
+	19, // 10: todo.v1.UpdateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
 	0,  // 11: todo.v1.UpdateTodoRequest.status:type_name -> todo.v1.TaskStatus
-	2,  // 12: todo.v1.UpdateTodoResponse.todo:type_name -> todo.v1.Todo
-	2,  // 13: todo.v1.CompleteTodoResponse.todo:type_name -> todo.v1.Todo
-	2,  // 14: todo.v1.ReopenTodoResponse.todo:type_name -> todo.v1.Todo
+	3,  // 12: todo.v1.UpdateTodoResponse.todo:type_name -> todo.v1.Todo
+	3,  // 13: todo.v1.CompleteTodoResponse.todo:type_name -> todo.v1.Todo
+	3,  // 14: todo.v1.ReopenTodoResponse.todo:type_name -> todo.v1.Todo
 	0,  // 15: todo.v1.ListTodosRequest.status:type_name -> todo.v1.TaskStatus
 	1,  // 16: todo.v1.ListTodosRequest.priority:type_name -> todo.v1.Priority
-	2,  // 17: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
-	18, // 18: todo.v1.UserTasksDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
-	3,  // 19: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
-	5,  // 20: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
-	7,  // 21: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
-	9,  // 22: todo.v1.TodoService.CompleteTodo:input_type -> todo.v1.CompleteTodoRequest
-	11, // 23: todo.v1.TodoService.ReopenTodo:input_type -> todo.v1.ReopenTodoRequest
-	13, // 24: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
-	15, // 25: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
-	4,  // 26: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.CreateTodoResponse
-	6,  // 27: todo.v1.TodoService.GetTodo:output_type -> todo.v1.GetTodoResponse
-	8,  // 28: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.UpdateTodoResponse
-	10, // 29: todo.v1.TodoService.CompleteTodo:output_type -> todo.v1.CompleteTodoResponse
-	12, // 30: todo.v1.TodoService.ReopenTodo:output_type -> todo.v1.ReopenTodoResponse
-	14, // 31: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.DeleteTodoResponse
-	16, // 32: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
+	3,  // 17: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
+	19, // 18: todo.v1.UserTasksDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
+	4,  // 19: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
+	6,  // 20: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
+	8,  // 21: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
+	10, // 22: todo.v1.TodoService.CompleteTodo:input_type -> todo.v1.CompleteTodoRequest
+	12, // 23: todo.v1.TodoService.ReopenTodo:input_type -> todo.v1.ReopenTodoRequest
+	14, // 24: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
+	16, // 25: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
+	5,  // 26: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.CreateTodoResponse
+	7,  // 27: todo.v1.TodoService.GetTodo:output_type -> todo.v1.GetTodoResponse
+	9,  // 28: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.UpdateTodoResponse
+	11, // 29: todo.v1.TodoService.CompleteTodo:output_type -> todo.v1.CompleteTodoResponse
+	13, // 30: todo.v1.TodoService.ReopenTodo:output_type -> todo.v1.ReopenTodoResponse
+	15, // 31: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.DeleteTodoResponse
+	17, // 32: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
 	26, // [26:33] is the sub-list for method output_type
 	19, // [19:26] is the sub-list for method input_type
 	19, // [19:19] is the sub-list for extension type_name
@@ -1198,7 +1281,7 @@ func file_todo_v1_todo_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_todo_v1_todo_proto_rawDesc), len(file_todo_v1_todo_proto_rawDesc)),
-			NumEnums:      2,
+			NumEnums:      3,
 			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
