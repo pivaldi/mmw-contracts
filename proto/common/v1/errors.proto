@@ -7,6 +7,6 @@ option go_package = "github.com/pivaldi/mmw-contracts/gen/go/common/v1;commonv1"
 // DomainError is attached as a Connect error detail.
 // TypeScript clients call err.findDetails(DomainError) to retrieve it.
 message DomainError {
-  int32  code    = 1; // maps to the module-specific error enum (e.g. TodoErrorCode)
+  int32 code = 1; // maps to the module-specific error enum (e.g. TodoErrorCode)
   string message = 2;
 }

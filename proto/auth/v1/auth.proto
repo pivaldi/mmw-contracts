@@ -93,14 +93,14 @@ message UserDeletedEvent {
 // AuthErrorCode enumerates all domain errors for the auth module.
 // Shared between Go (via platform.ErrorCode cast) and TypeScript (via generated enum).
 enum AuthErrorCode {
-  AUTH_ERROR_CODE_UNSPECIFIED          = 0;
+  AUTH_ERROR_CODE_UNSPECIFIED = 0;
   // Validation
-  AUTH_ERROR_CODE_INVALID_LOGIN        = 1;
-  AUTH_ERROR_CODE_INVALID_PASSWORD     = 2;
+  AUTH_ERROR_CODE_INVALID_LOGIN = 1;
+  AUTH_ERROR_CODE_INVALID_PASSWORD = 2;
   // Authentication
-  AUTH_ERROR_CODE_INVALID_CREDENTIALS  = 3;
-  AUTH_ERROR_CODE_INVALID_TOKEN        = 4;
+  AUTH_ERROR_CODE_INVALID_CREDENTIALS = 3;
+  AUTH_ERROR_CODE_INVALID_TOKEN = 4;
   // Resources
-  AUTH_ERROR_CODE_USER_NOT_FOUND       = 5;
-  AUTH_ERROR_CODE_USER_ALREADY_EXISTS  = 6;
+  AUTH_ERROR_CODE_USER_NOT_FOUND = 5;
+  AUTH_ERROR_CODE_USER_ALREADY_EXISTS = 6;
 }
