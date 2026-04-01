@@ -61,7 +61,8 @@ func (c *InprocClient) UpdateTodo(ctx context.Context, req *todov1.UpdateTodoReq
 }
 
 func (c *InprocClient) CompleteTodo(
-	ctx context.Context, req *todov1.CompleteTodoRequest) (*todov1.CompleteTodoResponse, error) {
+	ctx context.Context, req *todov1.CompleteTodoRequest,
+) (*todov1.CompleteTodoResponse, error) {
 	resp, err := c.server.CompleteTodo(ctx, req)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
@@ -71,7 +72,8 @@ func (c *InprocClient) CompleteTodo(
 }
 
 func (c *InprocClient) ReopenTodo(
-	ctx context.Context, req *todov1.ReopenTodoRequest) (*todov1.ReopenTodoResponse, error) {
+	ctx context.Context, req *todov1.ReopenTodoRequest,
+) (*todov1.ReopenTodoResponse, error) {
 	resp, err := c.server.ReopenTodo(ctx, req)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
@@ -81,7 +83,8 @@ func (c *InprocClient) ReopenTodo(
 }
 
 func (c *InprocClient) DeleteTodo(
-	ctx context.Context, req *todov1.DeleteTodoRequest) (*todov1.DeleteTodoResponse, error) {
+	ctx context.Context, req *todov1.DeleteTodoRequest,
+) (*todov1.DeleteTodoResponse, error) {
 	resp, err := c.server.DeleteTodo(ctx, req)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
@@ -91,7 +94,8 @@ func (c *InprocClient) DeleteTodo(
 }
 
 func (c *InprocClient) ListTodos(
-	ctx context.Context, req *todov1.ListTodosRequest) (*todov1.ListTodosResponse, error) {
+	ctx context.Context, req *todov1.ListTodosRequest,
+) (*todov1.ListTodosResponse, error) {
 	resp, err := c.server.ListTodos(ctx, req)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
@@ -123,7 +127,8 @@ func (NoopTodoService) UpdateTodo(_ context.Context, _ *todov1.UpdateTodoRequest
 }
 
 func (NoopTodoService) CompleteTodo(
-	_ context.Context, _ *todov1.CompleteTodoRequest) (*todov1.CompleteTodoResponse, error) {
+	_ context.Context, _ *todov1.CompleteTodoRequest,
+) (*todov1.CompleteTodoResponse, error) {
 	return nil, ErrTodoServiceUnavailable
 }
 
