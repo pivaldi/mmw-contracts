@@ -6,13 +6,14 @@ import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobu
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import { file_options_v1_options } from "../../options/v1/options_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file todo/v1/todo.proto.
  */
 export const file_todo_v1_todo: GenFile = /*@__PURE__*/
-  fileDesc("ChJ0b2RvL3YxL3RvZG8ucHJvdG8SB3RvZG8udjEijgIKBFRvZG8SCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSIwoGc3RhdHVzGAQgASgOMhMudG9kby52MS5UYXNrU3RhdHVzEiMKCHByaW9yaXR5GAUgASgOMhEudG9kby52MS5Qcmlvcml0eRIsCghkdWVfZGF0ZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKY3JlYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiigEKEUNyZWF0ZVRvZG9SZXF1ZXN0Eg0KBXRpdGxlGAEgASgJEhMKC2Rlc2NyaXB0aW9uGAIgASgJEiMKCHByaW9yaXR5GAMgASgOMhEudG9kby52MS5Qcmlvcml0eRIsCghkdWVfZGF0ZRgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiMQoSQ3JlYXRlVG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8iHAoOR2V0VG9kb1JlcXVlc3QSCgoCaWQYASABKAkiLgoPR2V0VG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8ikwIKEVVwZGF0ZVRvZG9SZXF1ZXN0EgoKAmlkGAEgASgJEhIKBXRpdGxlGAIgASgJSACIAQESGAoLZGVzY3JpcHRpb24YAyABKAlIAYgBARIoCghwcmlvcml0eRgEIAEoDjIRLnRvZG8udjEuUHJpb3JpdHlIAogBARIxCghkdWVfZGF0ZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIA4gBARIoCgZzdGF0dXMYBiABKA4yEy50b2RvLnYxLlRhc2tTdGF0dXNIBIgBAUIICgZfdGl0bGVCDgoMX2Rlc2NyaXB0aW9uQgsKCV9wcmlvcml0eUILCglfZHVlX2RhdGVCCQoHX3N0YXR1cyIxChJVcGRhdGVUb2RvUmVzcG9uc2USGwoEdG9kbxgBIAEoCzINLnRvZG8udjEuVG9kbyIhChNDb21wbGV0ZVRvZG9SZXF1ZXN0EgoKAmlkGAEgASgJIjMKFENvbXBsZXRlVG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8iHwoRUmVvcGVuVG9kb1JlcXVlc3QSCgoCaWQYASABKAkiMQoSUmVvcGVuVG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8iHwoRRGVsZXRlVG9kb1JlcXVlc3QSCgoCaWQYASABKAkiFAoSRGVsZXRlVG9kb1Jlc3BvbnNlIrwBChBMaXN0VG9kb3NSZXF1ZXN0EigKBnN0YXR1cxgBIAEoDjITLnRvZG8udjEuVGFza1N0YXR1c0gAiAEBEigKCHByaW9yaXR5GAIgASgOMhEudG9kby52MS5Qcmlvcml0eUgBiAEBEhIKBWxpbWl0GAMgASgFSAKIAQESEwoGb2Zmc2V0GAQgASgFSAOIAQFCCQoHX3N0YXR1c0ILCglfcHJpb3JpdHlCCAoGX2xpbWl0QgkKB19vZmZzZXQiRgoRTGlzdFRvZG9zUmVzcG9uc2USHAoFdG9kb3MYASADKAsyDS50b2RvLnYxLlRvZG8SEwoLdG90YWxfY291bnQYAiABKAUiagoVVXNlclRhc2tzRGVsZXRlZEV2ZW50Eg8KB3VzZXJfaWQYASABKAkSEAoIdGFza19pZHMYAiADKAMSLgoKZGVsZXRlZF9hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAqlQEKClRhc2tTdGF0dXMSGwoXVEFTS19TVEFUVVNfVU5TUEVDSUZJRUQQABIXChNUQVNLX1NUQVRVU19QRU5ESU5HEAESGwoXVEFTS19TVEFUVVNfSU5fUFJPR1JFU1MQAhIZChVUQVNLX1NUQVRVU19DT01QTEVURUQQAxIZChVUQVNLX1NUQVRVU19DQU5DRUxMRUQQBCpzCghQcmlvcml0eRIYChRQUklPUklUWV9VTlNQRUNJRklFRBAAEhAKDFBSSU9SSVRZX0xPVxABEhMKD1BSSU9SSVRZX01FRElVTRACEhEKDVBSSU9SSVRZX0hJR0gQAxITCg9QUklPUklUWV9VUkdFTlQQBCrnAgoNVG9kb0Vycm9yQ29kZRIfChtUT0RPX0VSUk9SX0NPREVfVU5TUEVDSUZJRUQQABIhCh1UT0RPX0VSUk9SX0NPREVfSU5WQUxJRF9USVRMRRABEiQKIFRPRE9fRVJST1JfQ09ERV9JTlZBTElEX0RVRV9EQVRFEAISHgoaVE9ET19FUlJPUl9DT0RFX0lOVkFMSURfSUQQAxIdChlUT0RPX0VSUk9SX0NPREVfTk9UX0ZPVU5EEAQSIgoeVE9ET19FUlJPUl9DT0RFX0FMUkVBRFlfRVhJU1RTEAUSLQopVE9ET19FUlJPUl9DT0RFX0NBTk5PVF9DT01QTEVURV9DQU5DRUxMRUQQBhIrCidUT0RPX0VSUk9SX0NPREVfQ0FOTk9UX01PRElGWV9DT01QTEVURUQQBxItCilUT0RPX0VSUk9SX0NPREVfSU5WQUxJRF9TVEFUVVNfVFJBTlNJVElPThAIMvgDCgtUb2RvU2VydmljZRJFCgpDcmVhdGVUb2RvEhoudG9kby52MS5DcmVhdGVUb2RvUmVxdWVzdBobLnRvZG8udjEuQ3JlYXRlVG9kb1Jlc3BvbnNlEjwKB0dldFRvZG8SFy50b2RvLnYxLkdldFRvZG9SZXF1ZXN0GhgudG9kby52MS5HZXRUb2RvUmVzcG9uc2USRQoKVXBkYXRlVG9kbxIaLnRvZG8udjEuVXBkYXRlVG9kb1JlcXVlc3QaGy50b2RvLnYxLlVwZGF0ZVRvZG9SZXNwb25zZRJLCgxDb21wbGV0ZVRvZG8SHC50b2RvLnYxLkNvbXBsZXRlVG9kb1JlcXVlc3QaHS50b2RvLnYxLkNvbXBsZXRlVG9kb1Jlc3BvbnNlEkUKClJlb3BlblRvZG8SGi50b2RvLnYxLlJlb3BlblRvZG9SZXF1ZXN0GhsudG9kby52MS5SZW9wZW5Ub2RvUmVzcG9uc2USRQoKRGVsZXRlVG9kbxIaLnRvZG8udjEuRGVsZXRlVG9kb1JlcXVlc3QaGy50b2RvLnYxLkRlbGV0ZVRvZG9SZXNwb25zZRJCCglMaXN0VG9kb3MSGS50b2RvLnYxLkxpc3RUb2Rvc1JlcXVlc3QaGi50b2RvLnYxLkxpc3RUb2Rvc1Jlc3BvbnNlQjhaNmdpdGh1Yi5jb20vcGl2YWxkaS9tbXctY29udHJhY3RzL2dlbi9nby90b2RvL3YxO3RvZG92MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("ChJ0b2RvL3YxL3RvZG8ucHJvdG8SB3RvZG8udjEijgIKBFRvZG8SCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSIwoGc3RhdHVzGAQgASgOMhMudG9kby52MS5UYXNrU3RhdHVzEiMKCHByaW9yaXR5GAUgASgOMhEudG9kby52MS5Qcmlvcml0eRIsCghkdWVfZGF0ZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKY3JlYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiigEKEUNyZWF0ZVRvZG9SZXF1ZXN0Eg0KBXRpdGxlGAEgASgJEhMKC2Rlc2NyaXB0aW9uGAIgASgJEiMKCHByaW9yaXR5GAMgASgOMhEudG9kby52MS5Qcmlvcml0eRIsCghkdWVfZGF0ZRgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiMQoSQ3JlYXRlVG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8iHAoOR2V0VG9kb1JlcXVlc3QSCgoCaWQYASABKAkiLgoPR2V0VG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8ikwIKEVVwZGF0ZVRvZG9SZXF1ZXN0EgoKAmlkGAEgASgJEhIKBXRpdGxlGAIgASgJSACIAQESGAoLZGVzY3JpcHRpb24YAyABKAlIAYgBARIoCghwcmlvcml0eRgEIAEoDjIRLnRvZG8udjEuUHJpb3JpdHlIAogBARIxCghkdWVfZGF0ZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIA4gBARIoCgZzdGF0dXMYBiABKA4yEy50b2RvLnYxLlRhc2tTdGF0dXNIBIgBAUIICgZfdGl0bGVCDgoMX2Rlc2NyaXB0aW9uQgsKCV9wcmlvcml0eUILCglfZHVlX2RhdGVCCQoHX3N0YXR1cyIxChJVcGRhdGVUb2RvUmVzcG9uc2USGwoEdG9kbxgBIAEoCzINLnRvZG8udjEuVG9kbyIhChNDb21wbGV0ZVRvZG9SZXF1ZXN0EgoKAmlkGAEgASgJIjMKFENvbXBsZXRlVG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8iHwoRUmVvcGVuVG9kb1JlcXVlc3QSCgoCaWQYASABKAkiMQoSUmVvcGVuVG9kb1Jlc3BvbnNlEhsKBHRvZG8YASABKAsyDS50b2RvLnYxLlRvZG8iHwoRRGVsZXRlVG9kb1JlcXVlc3QSCgoCaWQYASABKAkiFAoSRGVsZXRlVG9kb1Jlc3BvbnNlIrwBChBMaXN0VG9kb3NSZXF1ZXN0EigKBnN0YXR1cxgBIAEoDjITLnRvZG8udjEuVGFza1N0YXR1c0gAiAEBEigKCHByaW9yaXR5GAIgASgOMhEudG9kby52MS5Qcmlvcml0eUgBiAEBEhIKBWxpbWl0GAMgASgFSAKIAQESEwoGb2Zmc2V0GAQgASgFSAOIAQFCCQoHX3N0YXR1c0ILCglfcHJpb3JpdHlCCAoGX2xpbWl0QgkKB19vZmZzZXQiRgoRTGlzdFRvZG9zUmVzcG9uc2USHAoFdG9kb3MYASADKAsyDS50b2RvLnYxLlRvZG8SEwoLdG90YWxfY291bnQYAiABKAUiiQEKFVVzZXJUYXNrc0RlbGV0ZWRFdmVudBIPCgd1c2VyX2lkGAEgASgJEhAKCHRhc2tfaWRzGAIgAygDEi4KCmRlbGV0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wOh2CtRgZdG9kby51c2VyVGFza3MuZGVsZXRlZC52MSKHAQoUVXNlclRhc2tDcmVhdGVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIPCgd0YXNrX2lkGAIgASgJEi4KCmNyZWF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wOh2CtRgZdG9kby51c2VyVGFza3MuY3JlYXRlZC52MSKHAQoUVXNlclRhc2tVcGRhdGVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIPCgd0YXNrX2lkGAIgASgJEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wOh2CtRgZdG9kby51c2VyVGFza3MudXBkYXRlZC52MSKKAQoVVXNlclRhc2tSZW9wZW5lZEV2ZW50Eg8KB3VzZXJfaWQYASABKAkSDwoHdGFza19pZBgCIAEoCRIvCgtyZW9wZW5lZF9hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXA6HoK1GBp0b2RvLnVzZXJUYXNrcy5yZW9wZW5lZC52MSKNAQoWVXNlclRhc2tDb21wbGV0ZWRFdmVudBIPCgd1c2VyX2lkGAEgASgJEg8KB3Rhc2tfaWQYAiABKAkSMAoMY29tcGxldGVkX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDofgrUYG3RvZG8udXNlclRhc2tzLmNvbXBsZXRlZC52MSKGAQoUVXNlclRhc2tEZWxldGVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIPCgd0YXNrX2lkGAIgASgJEi4KCmRlbGV0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wOhyCtRgYdG9kby51c2VyVGFzay5kZWxldGVkLnYxKpUBCgpUYXNrU3RhdHVzEhsKF1RBU0tfU1RBVFVTX1VOU1BFQ0lGSUVEEAASFwoTVEFTS19TVEFUVVNfUEVORElORxABEhsKF1RBU0tfU1RBVFVTX0lOX1BST0dSRVNTEAISGQoVVEFTS19TVEFUVVNfQ09NUExFVEVEEAMSGQoVVEFTS19TVEFUVVNfQ0FOQ0VMTEVEEAQqcwoIUHJpb3JpdHkSGAoUUFJJT1JJVFlfVU5TUEVDSUZJRUQQABIQCgxQUklPUklUWV9MT1cQARITCg9QUklPUklUWV9NRURJVU0QAhIRCg1QUklPUklUWV9ISUdIEAMSEwoPUFJJT1JJVFlfVVJHRU5UEAQq5wIKDVRvZG9FcnJvckNvZGUSHwobVE9ET19FUlJPUl9DT0RFX1VOU1BFQ0lGSUVEEAASIQodVE9ET19FUlJPUl9DT0RFX0lOVkFMSURfVElUTEUQARIkCiBUT0RPX0VSUk9SX0NPREVfSU5WQUxJRF9EVUVfREFURRACEh4KGlRPRE9fRVJST1JfQ09ERV9JTlZBTElEX0lEEAMSHQoZVE9ET19FUlJPUl9DT0RFX05PVF9GT1VORBAEEiIKHlRPRE9fRVJST1JfQ09ERV9BTFJFQURZX0VYSVNUUxAFEi0KKVRPRE9fRVJST1JfQ09ERV9DQU5OT1RfQ09NUExFVEVfQ0FOQ0VMTEVEEAYSKwonVE9ET19FUlJPUl9DT0RFX0NBTk5PVF9NT0RJRllfQ09NUExFVEVEEAcSLQopVE9ET19FUlJPUl9DT0RFX0lOVkFMSURfU1RBVFVTX1RSQU5TSVRJT04QCDL4AwoLVG9kb1NlcnZpY2USRQoKQ3JlYXRlVG9kbxIaLnRvZG8udjEuQ3JlYXRlVG9kb1JlcXVlc3QaGy50b2RvLnYxLkNyZWF0ZVRvZG9SZXNwb25zZRI8CgdHZXRUb2RvEhcudG9kby52MS5HZXRUb2RvUmVxdWVzdBoYLnRvZG8udjEuR2V0VG9kb1Jlc3BvbnNlEkUKClVwZGF0ZVRvZG8SGi50b2RvLnYxLlVwZGF0ZVRvZG9SZXF1ZXN0GhsudG9kby52MS5VcGRhdGVUb2RvUmVzcG9uc2USSwoMQ29tcGxldGVUb2RvEhwudG9kby52MS5Db21wbGV0ZVRvZG9SZXF1ZXN0Gh0udG9kby52MS5Db21wbGV0ZVRvZG9SZXNwb25zZRJFCgpSZW9wZW5Ub2RvEhoudG9kby52MS5SZW9wZW5Ub2RvUmVxdWVzdBobLnRvZG8udjEuUmVvcGVuVG9kb1Jlc3BvbnNlEkUKCkRlbGV0ZVRvZG8SGi50b2RvLnYxLkRlbGV0ZVRvZG9SZXF1ZXN0GhsudG9kby52MS5EZWxldGVUb2RvUmVzcG9uc2USQgoJTGlzdFRvZG9zEhkudG9kby52MS5MaXN0VG9kb3NSZXF1ZXN0GhoudG9kby52MS5MaXN0VG9kb3NSZXNwb25zZUI4WjZnaXRodWIuY29tL3BpdmFsZGkvbW13LWNvbnRyYWN0cy9nZW4vZ28vdG9kby92MTt0b2RvdjFiBnByb3RvMw", [file_google_protobuf_timestamp, file_options_v1_options]);
 
 /**
  * Todo represents a todo item with all its properties
@@ -432,6 +433,151 @@ export type UserTasksDeletedEvent = Message<"todo.v1.UserTasksDeletedEvent"> & {
  */
 export const UserTasksDeletedEventSchema: GenMessage<UserTasksDeletedEvent> = /*@__PURE__*/
   messageDesc(file_todo_v1_todo, 15);
+
+/**
+ * UserTaskCreatedEvent is published when a new task is created.
+ *
+ * @generated from message todo.v1.UserTaskCreatedEvent
+ */
+export type UserTaskCreatedEvent = Message<"todo.v1.UserTaskCreatedEvent"> & {
+  /**
+   * @generated from field: string user_id = 1;
+   */
+  userId: string;
+
+  /**
+   * @generated from field: string task_id = 2;
+   */
+  taskId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 3;
+   */
+  createdAt?: Timestamp;
+};
+
+/**
+ * Describes the message todo.v1.UserTaskCreatedEvent.
+ * Use `create(UserTaskCreatedEventSchema)` to create a new message.
+ */
+export const UserTaskCreatedEventSchema: GenMessage<UserTaskCreatedEvent> = /*@__PURE__*/
+  messageDesc(file_todo_v1_todo, 16);
+
+/**
+ * UserTaskUpdatedEvent is published when a task is updated.
+ *
+ * @generated from message todo.v1.UserTaskUpdatedEvent
+ */
+export type UserTaskUpdatedEvent = Message<"todo.v1.UserTaskUpdatedEvent"> & {
+  /**
+   * @generated from field: string user_id = 1;
+   */
+  userId: string;
+
+  /**
+   * @generated from field: string task_id = 2;
+   */
+  taskId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 3;
+   */
+  updatedAt?: Timestamp;
+};
+
+/**
+ * Describes the message todo.v1.UserTaskUpdatedEvent.
+ * Use `create(UserTaskUpdatedEventSchema)` to create a new message.
+ */
+export const UserTaskUpdatedEventSchema: GenMessage<UserTaskUpdatedEvent> = /*@__PURE__*/
+  messageDesc(file_todo_v1_todo, 17);
+
+/**
+ * UserTaskReopenedEvent is published when a completed task is reopened.
+ *
+ * @generated from message todo.v1.UserTaskReopenedEvent
+ */
+export type UserTaskReopenedEvent = Message<"todo.v1.UserTaskReopenedEvent"> & {
+  /**
+   * @generated from field: string user_id = 1;
+   */
+  userId: string;
+
+  /**
+   * @generated from field: string task_id = 2;
+   */
+  taskId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp reopened_at = 3;
+   */
+  reopenedAt?: Timestamp;
+};
+
+/**
+ * Describes the message todo.v1.UserTaskReopenedEvent.
+ * Use `create(UserTaskReopenedEventSchema)` to create a new message.
+ */
+export const UserTaskReopenedEventSchema: GenMessage<UserTaskReopenedEvent> = /*@__PURE__*/
+  messageDesc(file_todo_v1_todo, 18);
+
+/**
+ * UserTaskCompletedEvent is published when a task is marked as completed.
+ *
+ * @generated from message todo.v1.UserTaskCompletedEvent
+ */
+export type UserTaskCompletedEvent = Message<"todo.v1.UserTaskCompletedEvent"> & {
+  /**
+   * @generated from field: string user_id = 1;
+   */
+  userId: string;
+
+  /**
+   * @generated from field: string task_id = 2;
+   */
+  taskId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp completed_at = 3;
+   */
+  completedAt?: Timestamp;
+};
+
+/**
+ * Describes the message todo.v1.UserTaskCompletedEvent.
+ * Use `create(UserTaskCompletedEventSchema)` to create a new message.
+ */
+export const UserTaskCompletedEventSchema: GenMessage<UserTaskCompletedEvent> = /*@__PURE__*/
+  messageDesc(file_todo_v1_todo, 19);
+
+/**
+ * UserTaskDeletedEvent is published when a single task is deleted.
+ *
+ * @generated from message todo.v1.UserTaskDeletedEvent
+ */
+export type UserTaskDeletedEvent = Message<"todo.v1.UserTaskDeletedEvent"> & {
+  /**
+   * @generated from field: string user_id = 1;
+   */
+  userId: string;
+
+  /**
+   * @generated from field: string task_id = 2;
+   */
+  taskId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp deleted_at = 3;
+   */
+  deletedAt?: Timestamp;
+};
+
+/**
+ * Describes the message todo.v1.UserTaskDeletedEvent.
+ * Use `create(UserTaskDeletedEventSchema)` to create a new message.
+ */
+export const UserTaskDeletedEventSchema: GenMessage<UserTaskDeletedEvent> = /*@__PURE__*/
+  messageDesc(file_todo_v1_todo, 20);
 
 /**
  * TaskStatus represents the current state of a todo

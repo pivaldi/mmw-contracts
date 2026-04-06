@@ -1,0 +1,16 @@
+[settings]
+experimental = true
+# quiet = true
+
+[tools]
+go = "latest"
+buf = "latest"
+
+[task.build]
+description = "build and install the buf/protoc plugin protoc-gen-go-contracts"
+run="go build -o $(go env GOBIN)/protoc-gen-go-contracts ./cmd/protoc-gen-go-contracts"
+
+[tasks.generate]
+depends = ["build"]
+description = "Generate the protocol buffer code"
+run = "buf generate"

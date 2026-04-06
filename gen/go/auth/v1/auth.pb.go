@@ -7,6 +7,7 @@
 package authv1
 
 import (
+	_ "github.com/pivaldi/mmw-contracts/gen/go/options/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -613,6 +614,59 @@ func (x *User) GetLogin() string {
 	return ""
 }
 
+// UserRegisteredEvent is published when a new user account is created.
+type UserRegisteredEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	RegisteredAt  *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=registered_at,json=registeredAt,proto3" json:"registered_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserRegisteredEvent) Reset() {
+	*x = UserRegisteredEvent{}
+	mi := &file_auth_v1_auth_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserRegisteredEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserRegisteredEvent) ProtoMessage() {}
+
+func (x *UserRegisteredEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserRegisteredEvent.ProtoReflect.Descriptor instead.
+func (*UserRegisteredEvent) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *UserRegisteredEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserRegisteredEvent) GetRegisteredAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RegisteredAt
+	}
+	return nil
+}
+
 // UserDeletedEvent is published to the message bus when a user account is deleted.
 type UserDeletedEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -624,7 +678,7 @@ type UserDeletedEvent struct {
 
 func (x *UserDeletedEvent) Reset() {
 	*x = UserDeletedEvent{}
-	mi := &file_auth_v1_auth_proto_msgTypes[11]
+	mi := &file_auth_v1_auth_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -636,7 +690,7 @@ func (x *UserDeletedEvent) String() string {
 func (*UserDeletedEvent) ProtoMessage() {}
 
 func (x *UserDeletedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_auth_proto_msgTypes[11]
+	mi := &file_auth_v1_auth_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -649,7 +703,7 @@ func (x *UserDeletedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserDeletedEvent.ProtoReflect.Descriptor instead.
 func (*UserDeletedEvent) Descriptor() ([]byte, []int) {
-	return file_auth_v1_auth_proto_rawDescGZIP(), []int{11}
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *UserDeletedEvent) GetUserId() string {
@@ -666,11 +720,117 @@ func (x *UserDeletedEvent) GetDeletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+// PasswordChangedEvent is published when a user successfully changes their password.
+type PasswordChangedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ChangedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=changed_at,json=changedAt,proto3" json:"changed_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PasswordChangedEvent) Reset() {
+	*x = PasswordChangedEvent{}
+	mi := &file_auth_v1_auth_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PasswordChangedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PasswordChangedEvent) ProtoMessage() {}
+
+func (x *PasswordChangedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PasswordChangedEvent.ProtoReflect.Descriptor instead.
+func (*PasswordChangedEvent) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *PasswordChangedEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *PasswordChangedEvent) GetChangedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ChangedAt
+	}
+	return nil
+}
+
+// UserLoggedInEvent is published when a user authenticates successfully.
+type UserLoggedInEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	LoggedInAt    *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=logged_in_at,json=loggedInAt,proto3" json:"logged_in_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserLoggedInEvent) Reset() {
+	*x = UserLoggedInEvent{}
+	mi := &file_auth_v1_auth_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserLoggedInEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserLoggedInEvent) ProtoMessage() {}
+
+func (x *UserLoggedInEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserLoggedInEvent.ProtoReflect.Descriptor instead.
+func (*UserLoggedInEvent) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UserLoggedInEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserLoggedInEvent) GetLoggedInAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LoggedInAt
+	}
+	return nil
+}
+
 var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"C\n" +
+	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18options/v1/options.proto\"C\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"+\n" +
@@ -697,11 +857,22 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x12DeleteUserResponse\",\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05login\x18\x02 \x01(\tR\x05login\"f\n" +
+	"\x05login\x18\x02 \x01(\tR\x05login\"\x8c\x01\n" +
+	"\x13UserRegisteredEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12?\n" +
+	"\rregistered_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\fregisteredAt:\x1b\x82\xb5\x18\x17auth.user.registered.v1\"\x80\x01\n" +
 	"\x10UserDeletedEvent\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x129\n" +
 	"\n" +
-	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt*\x92\x02\n" +
+	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt:\x18\x82\xb5\x18\x14auth.user.deleted.v1\"\x8d\x01\n" +
+	"\x14PasswordChangedEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x129\n" +
+	"\n" +
+	"changed_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tchangedAt:!\x82\xb5\x18\x1dauth.user.password_changed.v1\"\x86\x01\n" +
+	"\x11UserLoggedInEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12<\n" +
+	"\flogged_in_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"loggedInAt:\x1a\x82\xb5\x18\x16auth.user.logged_in.v1*\x92\x02\n" +
 	"\rAuthErrorCode\x12\x1f\n" +
 	"\x1bAUTH_ERROR_CODE_UNSPECIFIED\x10\x00\x12!\n" +
 	"\x1dAUTH_ERROR_CODE_INVALID_LOGIN\x10\x01\x12$\n" +
@@ -731,7 +902,7 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 }
 
 var file_auth_v1_auth_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_auth_v1_auth_proto_goTypes = []any{
 	(AuthErrorCode)(0),             // 0: auth.v1.AuthErrorCode
 	(*RegisterRequest)(nil),        // 1: auth.v1.RegisterRequest
@@ -745,26 +916,32 @@ var file_auth_v1_auth_proto_goTypes = []any{
 	(*DeleteUserRequest)(nil),      // 9: auth.v1.DeleteUserRequest
 	(*DeleteUserResponse)(nil),     // 10: auth.v1.DeleteUserResponse
 	(*User)(nil),                   // 11: auth.v1.User
-	(*UserDeletedEvent)(nil),       // 12: auth.v1.UserDeletedEvent
-	(*timestamppb.Timestamp)(nil),  // 13: google.protobuf.Timestamp
+	(*UserRegisteredEvent)(nil),    // 12: auth.v1.UserRegisteredEvent
+	(*UserDeletedEvent)(nil),       // 13: auth.v1.UserDeletedEvent
+	(*PasswordChangedEvent)(nil),   // 14: auth.v1.PasswordChangedEvent
+	(*UserLoggedInEvent)(nil),      // 15: auth.v1.UserLoggedInEvent
+	(*timestamppb.Timestamp)(nil),  // 16: google.protobuf.Timestamp
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	13, // 0: auth.v1.UserDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
-	1,  // 1: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
-	3,  // 2: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	5,  // 3: auth.v1.AuthService.ValidateToken:input_type -> auth.v1.ValidateTokenRequest
-	7,  // 4: auth.v1.AuthService.ChangePassword:input_type -> auth.v1.ChangePasswordRequest
-	9,  // 5: auth.v1.AuthService.DeleteUser:input_type -> auth.v1.DeleteUserRequest
-	2,  // 6: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	4,  // 7: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
-	6,  // 8: auth.v1.AuthService.ValidateToken:output_type -> auth.v1.ValidateTokenResponse
-	8,  // 9: auth.v1.AuthService.ChangePassword:output_type -> auth.v1.ChangePasswordResponse
-	10, // 10: auth.v1.AuthService.DeleteUser:output_type -> auth.v1.DeleteUserResponse
-	6,  // [6:11] is the sub-list for method output_type
-	1,  // [1:6] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	16, // 0: auth.v1.UserRegisteredEvent.registered_at:type_name -> google.protobuf.Timestamp
+	16, // 1: auth.v1.UserDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
+	16, // 2: auth.v1.PasswordChangedEvent.changed_at:type_name -> google.protobuf.Timestamp
+	16, // 3: auth.v1.UserLoggedInEvent.logged_in_at:type_name -> google.protobuf.Timestamp
+	1,  // 4: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
+	3,  // 5: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
+	5,  // 6: auth.v1.AuthService.ValidateToken:input_type -> auth.v1.ValidateTokenRequest
+	7,  // 7: auth.v1.AuthService.ChangePassword:input_type -> auth.v1.ChangePasswordRequest
+	9,  // 8: auth.v1.AuthService.DeleteUser:input_type -> auth.v1.DeleteUserRequest
+	2,  // 9: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
+	4,  // 10: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
+	6,  // 11: auth.v1.AuthService.ValidateToken:output_type -> auth.v1.ValidateTokenResponse
+	8,  // 12: auth.v1.AuthService.ChangePassword:output_type -> auth.v1.ChangePasswordResponse
+	10, // 13: auth.v1.AuthService.DeleteUser:output_type -> auth.v1.DeleteUserResponse
+	9,  // [9:14] is the sub-list for method output_type
+	4,  // [4:9] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_auth_proto_init() }
@@ -778,7 +955,7 @@ func file_auth_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_auth_proto_rawDesc), len(file_auth_v1_auth_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   12,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

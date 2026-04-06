@@ -7,6 +7,7 @@
 package todov1
 
 import (
+	_ "github.com/pivaldi/mmw-contracts/gen/go/options/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -1086,11 +1087,316 @@ func (x *UserTasksDeletedEvent) GetDeletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+// UserTaskCreatedEvent is published when a new task is created.
+type UserTaskCreatedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TaskId        string                 `protobuf:"bytes,2,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserTaskCreatedEvent) Reset() {
+	*x = UserTaskCreatedEvent{}
+	mi := &file_todo_v1_todo_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserTaskCreatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserTaskCreatedEvent) ProtoMessage() {}
+
+func (x *UserTaskCreatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserTaskCreatedEvent.ProtoReflect.Descriptor instead.
+func (*UserTaskCreatedEvent) Descriptor() ([]byte, []int) {
+	return file_todo_v1_todo_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UserTaskCreatedEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserTaskCreatedEvent) GetTaskId() string {
+	if x != nil {
+		return x.TaskId
+	}
+	return ""
+}
+
+func (x *UserTaskCreatedEvent) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+// UserTaskUpdatedEvent is published when a task is updated.
+type UserTaskUpdatedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TaskId        string                 `protobuf:"bytes,2,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserTaskUpdatedEvent) Reset() {
+	*x = UserTaskUpdatedEvent{}
+	mi := &file_todo_v1_todo_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserTaskUpdatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserTaskUpdatedEvent) ProtoMessage() {}
+
+func (x *UserTaskUpdatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserTaskUpdatedEvent.ProtoReflect.Descriptor instead.
+func (*UserTaskUpdatedEvent) Descriptor() ([]byte, []int) {
+	return file_todo_v1_todo_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *UserTaskUpdatedEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserTaskUpdatedEvent) GetTaskId() string {
+	if x != nil {
+		return x.TaskId
+	}
+	return ""
+}
+
+func (x *UserTaskUpdatedEvent) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+// UserTaskReopenedEvent is published when a completed task is reopened.
+type UserTaskReopenedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TaskId        string                 `protobuf:"bytes,2,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
+	ReopenedAt    *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=reopened_at,json=reopenedAt,proto3" json:"reopened_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserTaskReopenedEvent) Reset() {
+	*x = UserTaskReopenedEvent{}
+	mi := &file_todo_v1_todo_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserTaskReopenedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserTaskReopenedEvent) ProtoMessage() {}
+
+func (x *UserTaskReopenedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserTaskReopenedEvent.ProtoReflect.Descriptor instead.
+func (*UserTaskReopenedEvent) Descriptor() ([]byte, []int) {
+	return file_todo_v1_todo_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *UserTaskReopenedEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserTaskReopenedEvent) GetTaskId() string {
+	if x != nil {
+		return x.TaskId
+	}
+	return ""
+}
+
+func (x *UserTaskReopenedEvent) GetReopenedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ReopenedAt
+	}
+	return nil
+}
+
+// UserTaskCompletedEvent is published when a task is marked as completed.
+type UserTaskCompletedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TaskId        string                 `protobuf:"bytes,2,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
+	CompletedAt   *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserTaskCompletedEvent) Reset() {
+	*x = UserTaskCompletedEvent{}
+	mi := &file_todo_v1_todo_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserTaskCompletedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserTaskCompletedEvent) ProtoMessage() {}
+
+func (x *UserTaskCompletedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserTaskCompletedEvent.ProtoReflect.Descriptor instead.
+func (*UserTaskCompletedEvent) Descriptor() ([]byte, []int) {
+	return file_todo_v1_todo_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *UserTaskCompletedEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserTaskCompletedEvent) GetTaskId() string {
+	if x != nil {
+		return x.TaskId
+	}
+	return ""
+}
+
+func (x *UserTaskCompletedEvent) GetCompletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CompletedAt
+	}
+	return nil
+}
+
+// UserTaskDeletedEvent is published when a single task is deleted.
+type UserTaskDeletedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TaskId        string                 `protobuf:"bytes,2,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserTaskDeletedEvent) Reset() {
+	*x = UserTaskDeletedEvent{}
+	mi := &file_todo_v1_todo_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserTaskDeletedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserTaskDeletedEvent) ProtoMessage() {}
+
+func (x *UserTaskDeletedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserTaskDeletedEvent.ProtoReflect.Descriptor instead.
+func (*UserTaskDeletedEvent) Descriptor() ([]byte, []int) {
+	return file_todo_v1_todo_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *UserTaskDeletedEvent) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserTaskDeletedEvent) GetTaskId() string {
+	if x != nil {
+		return x.TaskId
+	}
+	return ""
+}
+
+func (x *UserTaskDeletedEvent) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
+}
+
 var File_todo_v1_todo_proto protoreflect.FileDescriptor
 
 const file_todo_v1_todo_proto_rawDesc = "" +
 	"\n" +
-	"\x12todo/v1/todo.proto\x12\atodo.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd7\x02\n" +
+	"\x12todo/v1/todo.proto\x12\atodo.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18options/v1/options.proto\"\xd7\x02\n" +
 	"\x04Todo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
@@ -1150,12 +1456,36 @@ const file_todo_v1_todo_proto_rawDesc = "" +
 	"\x11ListTodosResponse\x12#\n" +
 	"\x05todos\x18\x01 \x03(\v2\r.todo.v1.TodoR\x05todos\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\x86\x01\n" +
+	"totalCount\"\xa5\x01\n" +
 	"\x15UserTasksDeletedEvent\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
 	"\btask_ids\x18\x02 \x03(\x03R\ataskIds\x129\n" +
 	"\n" +
-	"deleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt*\x95\x01\n" +
+	"deleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt:\x1d\x82\xb5\x18\x19todo.userTasks.deleted.v1\"\xa2\x01\n" +
+	"\x14UserTaskCreatedEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\atask_id\x18\x02 \x01(\tR\x06taskId\x129\n" +
+	"\n" +
+	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt:\x1d\x82\xb5\x18\x19todo.userTasks.created.v1\"\xa2\x01\n" +
+	"\x14UserTaskUpdatedEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\atask_id\x18\x02 \x01(\tR\x06taskId\x129\n" +
+	"\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt:\x1d\x82\xb5\x18\x19todo.userTasks.updated.v1\"\xa6\x01\n" +
+	"\x15UserTaskReopenedEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\atask_id\x18\x02 \x01(\tR\x06taskId\x12;\n" +
+	"\vreopened_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"reopenedAt:\x1e\x82\xb5\x18\x1atodo.userTasks.reopened.v1\"\xaa\x01\n" +
+	"\x16UserTaskCompletedEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\atask_id\x18\x02 \x01(\tR\x06taskId\x12=\n" +
+	"\fcompleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vcompletedAt:\x1f\x82\xb5\x18\x1btodo.userTasks.completed.v1\"\xa1\x01\n" +
+	"\x14UserTaskDeletedEvent\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\atask_id\x18\x02 \x01(\tR\x06taskId\x129\n" +
+	"\n" +
+	"deleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt:\x1c\x82\xb5\x18\x18todo.userTask.deleted.v1*\x95\x01\n" +
 	"\n" +
 	"TaskStatus\x12\x1b\n" +
 	"\x17TASK_STATUS_UNSPECIFIED\x10\x00\x12\x17\n" +
@@ -1205,41 +1535,46 @@ func file_todo_v1_todo_proto_rawDescGZIP() []byte {
 }
 
 var file_todo_v1_todo_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_todo_v1_todo_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_todo_v1_todo_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_todo_v1_todo_proto_goTypes = []any{
-	(TaskStatus)(0),               // 0: todo.v1.TaskStatus
-	(Priority)(0),                 // 1: todo.v1.Priority
-	(TodoErrorCode)(0),            // 2: todo.v1.TodoErrorCode
-	(*Todo)(nil),                  // 3: todo.v1.Todo
-	(*CreateTodoRequest)(nil),     // 4: todo.v1.CreateTodoRequest
-	(*CreateTodoResponse)(nil),    // 5: todo.v1.CreateTodoResponse
-	(*GetTodoRequest)(nil),        // 6: todo.v1.GetTodoRequest
-	(*GetTodoResponse)(nil),       // 7: todo.v1.GetTodoResponse
-	(*UpdateTodoRequest)(nil),     // 8: todo.v1.UpdateTodoRequest
-	(*UpdateTodoResponse)(nil),    // 9: todo.v1.UpdateTodoResponse
-	(*CompleteTodoRequest)(nil),   // 10: todo.v1.CompleteTodoRequest
-	(*CompleteTodoResponse)(nil),  // 11: todo.v1.CompleteTodoResponse
-	(*ReopenTodoRequest)(nil),     // 12: todo.v1.ReopenTodoRequest
-	(*ReopenTodoResponse)(nil),    // 13: todo.v1.ReopenTodoResponse
-	(*DeleteTodoRequest)(nil),     // 14: todo.v1.DeleteTodoRequest
-	(*DeleteTodoResponse)(nil),    // 15: todo.v1.DeleteTodoResponse
-	(*ListTodosRequest)(nil),      // 16: todo.v1.ListTodosRequest
-	(*ListTodosResponse)(nil),     // 17: todo.v1.ListTodosResponse
-	(*UserTasksDeletedEvent)(nil), // 18: todo.v1.UserTasksDeletedEvent
-	(*timestamppb.Timestamp)(nil), // 19: google.protobuf.Timestamp
+	(TaskStatus)(0),                // 0: todo.v1.TaskStatus
+	(Priority)(0),                  // 1: todo.v1.Priority
+	(TodoErrorCode)(0),             // 2: todo.v1.TodoErrorCode
+	(*Todo)(nil),                   // 3: todo.v1.Todo
+	(*CreateTodoRequest)(nil),      // 4: todo.v1.CreateTodoRequest
+	(*CreateTodoResponse)(nil),     // 5: todo.v1.CreateTodoResponse
+	(*GetTodoRequest)(nil),         // 6: todo.v1.GetTodoRequest
+	(*GetTodoResponse)(nil),        // 7: todo.v1.GetTodoResponse
+	(*UpdateTodoRequest)(nil),      // 8: todo.v1.UpdateTodoRequest
+	(*UpdateTodoResponse)(nil),     // 9: todo.v1.UpdateTodoResponse
+	(*CompleteTodoRequest)(nil),    // 10: todo.v1.CompleteTodoRequest
+	(*CompleteTodoResponse)(nil),   // 11: todo.v1.CompleteTodoResponse
+	(*ReopenTodoRequest)(nil),      // 12: todo.v1.ReopenTodoRequest
+	(*ReopenTodoResponse)(nil),     // 13: todo.v1.ReopenTodoResponse
+	(*DeleteTodoRequest)(nil),      // 14: todo.v1.DeleteTodoRequest
+	(*DeleteTodoResponse)(nil),     // 15: todo.v1.DeleteTodoResponse
+	(*ListTodosRequest)(nil),       // 16: todo.v1.ListTodosRequest
+	(*ListTodosResponse)(nil),      // 17: todo.v1.ListTodosResponse
+	(*UserTasksDeletedEvent)(nil),  // 18: todo.v1.UserTasksDeletedEvent
+	(*UserTaskCreatedEvent)(nil),   // 19: todo.v1.UserTaskCreatedEvent
+	(*UserTaskUpdatedEvent)(nil),   // 20: todo.v1.UserTaskUpdatedEvent
+	(*UserTaskReopenedEvent)(nil),  // 21: todo.v1.UserTaskReopenedEvent
+	(*UserTaskCompletedEvent)(nil), // 22: todo.v1.UserTaskCompletedEvent
+	(*UserTaskDeletedEvent)(nil),   // 23: todo.v1.UserTaskDeletedEvent
+	(*timestamppb.Timestamp)(nil),  // 24: google.protobuf.Timestamp
 }
 var file_todo_v1_todo_proto_depIdxs = []int32{
 	0,  // 0: todo.v1.Todo.status:type_name -> todo.v1.TaskStatus
 	1,  // 1: todo.v1.Todo.priority:type_name -> todo.v1.Priority
-	19, // 2: todo.v1.Todo.due_date:type_name -> google.protobuf.Timestamp
-	19, // 3: todo.v1.Todo.created_at:type_name -> google.protobuf.Timestamp
-	19, // 4: todo.v1.Todo.updated_at:type_name -> google.protobuf.Timestamp
+	24, // 2: todo.v1.Todo.due_date:type_name -> google.protobuf.Timestamp
+	24, // 3: todo.v1.Todo.created_at:type_name -> google.protobuf.Timestamp
+	24, // 4: todo.v1.Todo.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 5: todo.v1.CreateTodoRequest.priority:type_name -> todo.v1.Priority
-	19, // 6: todo.v1.CreateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
+	24, // 6: todo.v1.CreateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
 	3,  // 7: todo.v1.CreateTodoResponse.todo:type_name -> todo.v1.Todo
 	3,  // 8: todo.v1.GetTodoResponse.todo:type_name -> todo.v1.Todo
 	1,  // 9: todo.v1.UpdateTodoRequest.priority:type_name -> todo.v1.Priority
-	19, // 10: todo.v1.UpdateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
+	24, // 10: todo.v1.UpdateTodoRequest.due_date:type_name -> google.protobuf.Timestamp
 	0,  // 11: todo.v1.UpdateTodoRequest.status:type_name -> todo.v1.TaskStatus
 	3,  // 12: todo.v1.UpdateTodoResponse.todo:type_name -> todo.v1.Todo
 	3,  // 13: todo.v1.CompleteTodoResponse.todo:type_name -> todo.v1.Todo
@@ -1247,26 +1582,31 @@ var file_todo_v1_todo_proto_depIdxs = []int32{
 	0,  // 15: todo.v1.ListTodosRequest.status:type_name -> todo.v1.TaskStatus
 	1,  // 16: todo.v1.ListTodosRequest.priority:type_name -> todo.v1.Priority
 	3,  // 17: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
-	19, // 18: todo.v1.UserTasksDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
-	4,  // 19: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
-	6,  // 20: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
-	8,  // 21: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
-	10, // 22: todo.v1.TodoService.CompleteTodo:input_type -> todo.v1.CompleteTodoRequest
-	12, // 23: todo.v1.TodoService.ReopenTodo:input_type -> todo.v1.ReopenTodoRequest
-	14, // 24: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
-	16, // 25: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
-	5,  // 26: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.CreateTodoResponse
-	7,  // 27: todo.v1.TodoService.GetTodo:output_type -> todo.v1.GetTodoResponse
-	9,  // 28: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.UpdateTodoResponse
-	11, // 29: todo.v1.TodoService.CompleteTodo:output_type -> todo.v1.CompleteTodoResponse
-	13, // 30: todo.v1.TodoService.ReopenTodo:output_type -> todo.v1.ReopenTodoResponse
-	15, // 31: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.DeleteTodoResponse
-	17, // 32: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
-	26, // [26:33] is the sub-list for method output_type
-	19, // [19:26] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	24, // 18: todo.v1.UserTasksDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
+	24, // 19: todo.v1.UserTaskCreatedEvent.created_at:type_name -> google.protobuf.Timestamp
+	24, // 20: todo.v1.UserTaskUpdatedEvent.updated_at:type_name -> google.protobuf.Timestamp
+	24, // 21: todo.v1.UserTaskReopenedEvent.reopened_at:type_name -> google.protobuf.Timestamp
+	24, // 22: todo.v1.UserTaskCompletedEvent.completed_at:type_name -> google.protobuf.Timestamp
+	24, // 23: todo.v1.UserTaskDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
+	4,  // 24: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
+	6,  // 25: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
+	8,  // 26: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
+	10, // 27: todo.v1.TodoService.CompleteTodo:input_type -> todo.v1.CompleteTodoRequest
+	12, // 28: todo.v1.TodoService.ReopenTodo:input_type -> todo.v1.ReopenTodoRequest
+	14, // 29: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
+	16, // 30: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
+	5,  // 31: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.CreateTodoResponse
+	7,  // 32: todo.v1.TodoService.GetTodo:output_type -> todo.v1.GetTodoResponse
+	9,  // 33: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.UpdateTodoResponse
+	11, // 34: todo.v1.TodoService.CompleteTodo:output_type -> todo.v1.CompleteTodoResponse
+	13, // 35: todo.v1.TodoService.ReopenTodo:output_type -> todo.v1.ReopenTodoResponse
+	15, // 36: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.DeleteTodoResponse
+	17, // 37: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
+	31, // [31:38] is the sub-list for method output_type
+	24, // [24:31] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_todo_v1_todo_proto_init() }
@@ -1282,7 +1622,7 @@ func file_todo_v1_todo_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_todo_v1_todo_proto_rawDesc), len(file_todo_v1_todo_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   16,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

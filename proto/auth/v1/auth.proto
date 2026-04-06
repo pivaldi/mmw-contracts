@@ -3,6 +3,7 @@ syntax = "proto3";
 package auth.v1;
 
 import "google/protobuf/timestamp.proto";
+import "options/v1/options.proto";
 
 option go_package = "github.com/pivaldi/mmw-contracts/gen/go/auth/v1;authv1";
 
@@ -84,10 +85,32 @@ message User {
   string login = 2;
 }
 
+// UserRegisteredEvent is published when a new user account is created.
+message UserRegisteredEvent {
+  option (options.v1.topic) = "auth.user.registered.v1";
+  string user_id = 1;
+  google.protobuf.Timestamp registered_at = 2;
+}
+
 // UserDeletedEvent is published to the message bus when a user account is deleted.
 message UserDeletedEvent {
+  option (options.v1.topic) = "auth.user.deleted.v1";
   string user_id = 1;
   google.protobuf.Timestamp deleted_at = 2;
+}
+
+// PasswordChangedEvent is published when a user successfully changes their password.
+message PasswordChangedEvent {
+  option (options.v1.topic) = "auth.user.password_changed.v1";
+  string user_id = 1;
+  google.protobuf.Timestamp changed_at = 2;
+}
+
+// UserLoggedInEvent is published when a user authenticates successfully.
+message UserLoggedInEvent {
+  option (options.v1.topic) = "auth.user.logged_in.v1";
+  string user_id = 1;
+  google.protobuf.Timestamp logged_in_at = 2;
 }
 
 // AuthErrorCode enumerates all domain errors for the auth module.

@@ -23,3 +23,7 @@ plugins:
     opt:
       - target=ts
       - import_extension=none # strip .js from imports — works with any bundler (webpack, vite, esbuild)
+  # Go: definitions layer (interface + InprocClient + NoopService + errors + event aliases)
+  # Build first: go build -o $(go env GOPATH)/bin/protoc-gen-go-contracts ./cmd/protoc-gen-go-contracts
+  - local: protoc-gen-go-contracts
+    out: .

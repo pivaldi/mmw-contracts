@@ -3,6 +3,7 @@ syntax = "proto3";
 package todo.v1;
 
 import "google/protobuf/timestamp.proto";
+import "options/v1/options.proto";
 
 option go_package = "github.com/pivaldi/mmw-contracts/gen/go/todo/v1;todov1";
 
@@ -129,8 +130,49 @@ message ListTodosResponse {
 
 // UserTasksDeletedEvent is published when all tasks for a deleted user are removed.
 message UserTasksDeletedEvent {
+  option (options.v1.topic) = "todo.userTasks.deleted.v1";
   string user_id = 1;
   repeated int64 task_ids = 2;
+  google.protobuf.Timestamp deleted_at = 3;
+}
+
+// UserTaskCreatedEvent is published when a new task is created.
+message UserTaskCreatedEvent {
+  option (options.v1.topic) = "todo.userTasks.created.v1";
+  string user_id = 1;
+  string task_id = 2;
+  google.protobuf.Timestamp created_at = 3;
+}
+
+// UserTaskUpdatedEvent is published when a task is updated.
+message UserTaskUpdatedEvent {
+  option (options.v1.topic) = "todo.userTasks.updated.v1";
+  string user_id = 1;
+  string task_id = 2;
+  google.protobuf.Timestamp updated_at = 3;
+}
+
+// UserTaskReopenedEvent is published when a completed task is reopened.
+message UserTaskReopenedEvent {
+  option (options.v1.topic) = "todo.userTasks.reopened.v1";
+  string user_id = 1;
+  string task_id = 2;
+  google.protobuf.Timestamp reopened_at = 3;
+}
+
+// UserTaskCompletedEvent is published when a task is marked as completed.
+message UserTaskCompletedEvent {
+  option (options.v1.topic) = "todo.userTasks.completed.v1";
+  string user_id = 1;
+  string task_id = 2;
+  google.protobuf.Timestamp completed_at = 3;
+}
+
+// UserTaskDeletedEvent is published when a single task is deleted.
+message UserTaskDeletedEvent {
+  option (options.v1.topic) = "todo.userTask.deleted.v1";
+  string user_id = 1;
+  string task_id = 2;
   google.protobuf.Timestamp deleted_at = 3;
 }
 

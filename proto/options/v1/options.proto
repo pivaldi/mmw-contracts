@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package options.v1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/pivaldi/mmw-contracts/gen/go/options/v1;optionsv1";
+
+extend google.protobuf.MessageOptions {
+  // topic specifies the message-bus routing key for an event message.
+  // The plugin uses this to generate TopicXxx constants and AllEvents in events.go.
+  //
+  // Example:
+  //   message UserDeletedEvent {
+  //     option (options.v1.topic) = "auth.user.deleted.v1";
+  //     ...
+  //   }
+  string topic = 50000;
+}
