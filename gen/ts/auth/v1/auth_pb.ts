@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file auth/v1/auth.proto.
  */
 export const file_auth_v1_auth: GenFile = /*@__PURE__*/
-  fileDesc("ChJhdXRoL3YxL2F1dGgucHJvdG8SB2F1dGgudjEiMgoPUmVnaXN0ZXJSZXF1ZXN0Eg0KBWxvZ2luGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIiMKEFJlZ2lzdGVyUmVzcG9uc2USDwoHdXNlcl9pZBgBIAEoCSIvCgxMb2dpblJlcXVlc3QSDQoFbG9naW4YASABKAkSEAoIcGFzc3dvcmQYAiABKAkiLwoNTG9naW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIPCgd1c2VyX2lkGAIgASgJIiUKFFZhbGlkYXRlVG9rZW5SZXF1ZXN0Eg0KBXRva2VuGAEgASgJIjoKFVZhbGlkYXRlVG9rZW5SZXNwb25zZRIPCgd1c2VyX2lkGAEgASgJEhAKCGlzX3ZhbGlkGAIgASgIIlQKFUNoYW5nZVBhc3N3b3JkUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJEhQKDG9sZF9wYXNzd29yZBgCIAEoCRIUCgxuZXdfcGFzc3dvcmQYAyABKAkiGAoWQ2hhbmdlUGFzc3dvcmRSZXNwb25zZSIkChFEZWxldGVVc2VyUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJIhQKEkRlbGV0ZVVzZXJSZXNwb25zZSIhCgRVc2VyEgoKAmlkGAEgASgJEg0KBWxvZ2luGAIgASgJInYKE1VzZXJSZWdpc3RlcmVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIxCg1yZWdpc3RlcmVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDobgrUYF2F1dGgudXNlci5yZWdpc3RlcmVkLnYxIm0KEFVzZXJEZWxldGVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIuCgpkZWxldGVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDoYgrUYFGF1dGgudXNlci5kZWxldGVkLnYxInoKFFBhc3N3b3JkQ2hhbmdlZEV2ZW50Eg8KB3VzZXJfaWQYASABKAkSLgoKY2hhbmdlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXA6IYK1GB1hdXRoLnVzZXIucGFzc3dvcmRfY2hhbmdlZC52MSJyChFVc2VyTG9nZ2VkSW5FdmVudBIPCgd1c2VyX2lkGAEgASgJEjAKDGxvZ2dlZF9pbl9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXA6GoK1GBZhdXRoLnVzZXIubG9nZ2VkX2luLnYxKpICCg1BdXRoRXJyb3JDb2RlEh8KG0FVVEhfRVJST1JfQ09ERV9VTlNQRUNJRklFRBAAEiEKHUFVVEhfRVJST1JfQ09ERV9JTlZBTElEX0xPR0lOEAESJAogQVVUSF9FUlJPUl9DT0RFX0lOVkFMSURfUEFTU1dPUkQQAhInCiNBVVRIX0VSUk9SX0NPREVfSU5WQUxJRF9DUkVERU5USUFMUxADEiEKHUFVVEhfRVJST1JfQ09ERV9JTlZBTElEX1RPS0VOEAQSIgoeQVVUSF9FUlJPUl9DT0RFX1VTRVJfTk9UX0ZPVU5EEAUSJwojQVVUSF9FUlJPUl9DT0RFX1VTRVJfQUxSRUFEWV9FWElTVFMQBjLwAgoLQXV0aFNlcnZpY2USPwoIUmVnaXN0ZXISGC5hdXRoLnYxLlJlZ2lzdGVyUmVxdWVzdBoZLmF1dGgudjEuUmVnaXN0ZXJSZXNwb25zZRI2CgVMb2dpbhIVLmF1dGgudjEuTG9naW5SZXF1ZXN0GhYuYXV0aC52MS5Mb2dpblJlc3BvbnNlEk4KDVZhbGlkYXRlVG9rZW4SHS5hdXRoLnYxLlZhbGlkYXRlVG9rZW5SZXF1ZXN0Gh4uYXV0aC52MS5WYWxpZGF0ZVRva2VuUmVzcG9uc2USUQoOQ2hhbmdlUGFzc3dvcmQSHi5hdXRoLnYxLkNoYW5nZVBhc3N3b3JkUmVxdWVzdBofLmF1dGgudjEuQ2hhbmdlUGFzc3dvcmRSZXNwb25zZRJFCgpEZWxldGVVc2VyEhouYXV0aC52MS5EZWxldGVVc2VyUmVxdWVzdBobLmF1dGgudjEuRGVsZXRlVXNlclJlc3BvbnNlQjhaNmdpdGh1Yi5jb20vcGl2YWxkaS9tbXctY29udHJhY3RzL2dlbi9nby9hdXRoL3YxO2F1dGh2MWIGcHJvdG8z", [file_google_protobuf_timestamp, file_options_v1_options]);
+  fileDesc("ChJhdXRoL3YxL2F1dGgucHJvdG8SB2F1dGgudjEiMgoPUmVnaXN0ZXJSZXF1ZXN0Eg0KBWxvZ2luGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIiMKEFJlZ2lzdGVyUmVzcG9uc2USDwoHdXNlcl9pZBgBIAEoCSIvCgxMb2dpblJlcXVlc3QSDQoFbG9naW4YASABKAkSEAoIcGFzc3dvcmQYAiABKAkiLwoNTG9naW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIPCgd1c2VyX2lkGAIgASgJIiUKFFZhbGlkYXRlVG9rZW5SZXF1ZXN0Eg0KBXRva2VuGAEgASgJIjoKFVZhbGlkYXRlVG9rZW5SZXNwb25zZRIPCgd1c2VyX2lkGAEgASgJEhAKCGlzX3ZhbGlkGAIgASgIIlQKFUNoYW5nZVBhc3N3b3JkUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJEhQKDG9sZF9wYXNzd29yZBgCIAEoCRIUCgxuZXdfcGFzc3dvcmQYAyABKAkiGAoWQ2hhbmdlUGFzc3dvcmRSZXNwb25zZSIkChFEZWxldGVVc2VyUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJIhQKEkRlbGV0ZVVzZXJSZXNwb25zZSIhCgRVc2VyEgoKAmlkGAEgASgJEg0KBWxvZ2luGAIgASgJInYKE1VzZXJSZWdpc3RlcmVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIxCg1yZWdpc3RlcmVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDobgrUYF2F1dGgudXNlci5yZWdpc3RlcmVkLnYxIm0KEFVzZXJEZWxldGVkRXZlbnQSDwoHdXNlcl9pZBgBIAEoCRIuCgpkZWxldGVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDoYgrUYFGF1dGgudXNlci5kZWxldGVkLnYxInoKFFBhc3N3b3JkQ2hhbmdlZEV2ZW50Eg8KB3VzZXJfaWQYASABKAkSLgoKY2hhbmdlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXA6IYK1GB1hdXRoLnVzZXIucGFzc3dvcmRfY2hhbmdlZC52MSJyChFVc2VyTG9nZ2VkSW5FdmVudBIPCgd1c2VyX2lkGAEgASgJEjAKDGxvZ2dlZF9pbl9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXA6GoK1GBZhdXRoLnVzZXIubG9nZ2VkX2luLnYxKpICCg1BdXRoRXJyb3JDb2RlEh8KG0FVVEhfRVJST1JfQ09ERV9VTlNQRUNJRklFRBAAEiEKHUFVVEhfRVJST1JfQ09ERV9JTlZBTElEX0xPR0lOEAESJAogQVVUSF9FUlJPUl9DT0RFX0lOVkFMSURfUEFTU1dPUkQQAhInCiNBVVRIX0VSUk9SX0NPREVfSU5WQUxJRF9DUkVERU5USUFMUxADEiEKHUFVVEhfRVJST1JfQ09ERV9JTlZBTElEX1RPS0VOEAQSIgoeQVVUSF9FUlJPUl9DT0RFX1VTRVJfTk9UX0ZPVU5EEAUSJwojQVVUSF9FUlJPUl9DT0RFX1VTRVJfQUxSRUFEWV9FWElTVFMQBjKmAgoRQXV0aFB1YmxpY1NlcnZpY2USPwoIUmVnaXN0ZXISGC5hdXRoLnYxLlJlZ2lzdGVyUmVxdWVzdBoZLmF1dGgudjEuUmVnaXN0ZXJSZXNwb25zZRI2CgVMb2dpbhIVLmF1dGgudjEuTG9naW5SZXF1ZXN0GhYuYXV0aC52MS5Mb2dpblJlc3BvbnNlElEKDkNoYW5nZVBhc3N3b3JkEh4uYXV0aC52MS5DaGFuZ2VQYXNzd29yZFJlcXVlc3QaHy5hdXRoLnYxLkNoYW5nZVBhc3N3b3JkUmVzcG9uc2USRQoKRGVsZXRlVXNlchIaLmF1dGgudjEuRGVsZXRlVXNlclJlcXVlc3QaGy5hdXRoLnYxLkRlbGV0ZVVzZXJSZXNwb25zZTJkChJBdXRoUHJpdmF0ZVNlcnZpY2USTgoNVmFsaWRhdGVUb2tlbhIdLmF1dGgudjEuVmFsaWRhdGVUb2tlblJlcXVlc3QaHi5hdXRoLnYxLlZhbGlkYXRlVG9rZW5SZXNwb25zZUI4WjZnaXRodWIuY29tL3BpdmFsZGkvbW13LWNvbnRyYWN0cy9nZW4vZ28vYXV0aC92MTthdXRodjFiBnByb3RvMw", [file_google_protobuf_timestamp, file_options_v1_options]);
 
 /**
  * @generated from message auth.v1.RegisterRequest
@@ -383,15 +383,15 @@ export const AuthErrorCodeSchema: GenEnum<AuthErrorCode> = /*@__PURE__*/
   enumDesc(file_auth_v1_auth, 0);
 
 /**
- * AuthService provides functionalities for user authentication.
+ * AuthPublicService exposes endpoints reachable by unauthenticated clients.
  *
- * @generated from service auth.v1.AuthService
+ * @generated from service auth.v1.AuthPublicService
  */
-export const AuthService: GenService<{
+export const AuthPublicService: GenService<{
   /**
    * Register creates a new user account.
    *
-   * @generated from rpc auth.v1.AuthService.Register
+   * @generated from rpc auth.v1.AuthPublicService.Register
    */
   register: {
     methodKind: "unary";
@@ -401,7 +401,7 @@ export const AuthService: GenService<{
   /**
    * Login authenticates a user and returns a session token.
    *
-   * @generated from rpc auth.v1.AuthService.Login
+   * @generated from rpc auth.v1.AuthPublicService.Login
    */
   login: {
     methodKind: "unary";
@@ -409,19 +409,9 @@ export const AuthService: GenService<{
     output: typeof LoginResponseSchema;
   },
   /**
-   * ValidateToken checks if a token is valid and returns the user's identity.
-   *
-   * @generated from rpc auth.v1.AuthService.ValidateToken
-   */
-  validateToken: {
-    methodKind: "unary";
-    input: typeof ValidateTokenRequestSchema;
-    output: typeof ValidateTokenResponseSchema;
-  },
-  /**
    * ChangePassword updates a user's password after verifying the old one.
    *
-   * @generated from rpc auth.v1.AuthService.ChangePassword
+   * @generated from rpc auth.v1.AuthPublicService.ChangePassword
    */
   changePassword: {
     methodKind: "unary";
@@ -431,7 +421,7 @@ export const AuthService: GenService<{
   /**
    * DeleteUser removes a user from the system.
    *
-   * @generated from rpc auth.v1.AuthService.DeleteUser
+   * @generated from rpc auth.v1.AuthPublicService.DeleteUser
    */
   deleteUser: {
     methodKind: "unary";
@@ -440,4 +430,23 @@ export const AuthService: GenService<{
   },
 }> = /*@__PURE__*/
   serviceDesc(file_auth_v1_auth, 0);
+
+/**
+ * AuthPrivateService exposes endpoints reachable only by internal services.
+ *
+ * @generated from service auth.v1.AuthPrivateService
+ */
+export const AuthPrivateService: GenService<{
+  /**
+   * ValidateToken checks if a token is valid and returns the user's identity.
+   *
+   * @generated from rpc auth.v1.AuthPrivateService.ValidateToken
+   */
+  validateToken: {
+    methodKind: "unary";
+    input: typeof ValidateTokenRequestSchema;
+    output: typeof ValidateTokenResponseSchema;
+  },
+}> = /*@__PURE__*/
+  serviceDesc(file_auth_v1_auth, 1);
 

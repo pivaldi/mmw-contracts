@@ -3,7 +3,7 @@
 //
 //	definitions/{domain}/contract.go  — interface, InprocClient, NoopService
 //	definitions/{domain}/errors.go    — const aliases for *ErrorCode enum values
-//	definitions/{domain}/events.go    — TopicXxx constants, AllEvents slice, type aliases
+//	definitions/{domain}/events.go    — TopicXxx constants, Topics slice, type aliases
 //	                                    (requires (options.v1.topic) on each *Event message)
 //
 // Build and install:
@@ -51,9 +51,14 @@ func processFile(gen *protogen.Plugin, f *protogen.File) {
 	alias := goAlias(f)           // e.g. "todov1"
 	imp := string(f.GoImportPath) // e.g. "github.com/pivaldi/mmw-contracts/gen/go/todo/v1"
 
-	if len(f.Services) > 0 {
-		genContract(gen, f, pkg, alias, imp)
+	for _, svc := range f.Services {
+		genContract(gen, f, pkg, alias, imp, svc)
 	}
+
+	if len(f.Services) > 0 {
+		genInprocClient(gen, f, pkg, alias, imp)
+	}
+
 	if e := errorCodeEnum(f); e != nil {
 		genErrors(gen, f, pkg, alias, imp, e)
 	}
@@ -64,19 +69,59 @@ func processFile(gen *protogen.Plugin, f *protogen.File) {
 
 // ── contract.go ───────────────────────────────────────────────────────────────
 
-func genContract(gen *protogen.Plugin, f *protogen.File, pkg, alias, imp string) {
-	svc := f.Services[0]
+func genContract(gen *protogen.Plugin, f *protogen.File, pkg, alias, imp string, svc *protogen.Service) {
 	svcName := svc.GoName
 	noopName := "Noop" + svcName
 	errVar := "Err" + svcName + "Unavailable"
+	filename := "definitions/" + pkg + "/" + pascalToSnake(svcName) + "_contract_gen.go"
 
-	g := gen.NewGeneratedFile("definitions/"+pkg+"/contract_gen.go", "")
+	g := gen.NewGeneratedFile(filename, "")
 	w := printer(g)
 
 	writeContractHeader(w, f.Desc.Path(), pkg, alias, imp)
 	writeInterface(w, svcName, alias, svc.Methods)
-	writeInprocClient(w, svcName, alias, svc.Methods)
 	writeNoopService(w, svcName, noopName, errVar, alias, svc.Methods)
+}
+
+func genInprocClient(gen *protogen.Plugin, f *protogen.File, pkg, alias, imp string) {
+	g := gen.NewGeneratedFile("definitions/"+pkg+"/inproc_client_gen.go", "")
+	w := printer(g)
+
+	var allMethods []*protogen.Method
+	for _, svc := range f.Services {
+		allMethods = append(allMethods, svc.Methods...)
+	}
+
+	writeContractHeader(w, f.Desc.Path(), pkg, alias, imp)
+
+	var serverType string
+	var assertTypes []string
+
+	if len(f.Services) == 1 {
+		serverType = f.Services[0].GoName
+		assertTypes = []string{serverType}
+	} else {
+		serverType = strings.ToUpper(pkg[:1]) + pkg[1:] + "Service"
+		writeCombinedInterface(w, serverType, f.Services)
+
+		for _, svc := range f.Services {
+			assertTypes = append(assertTypes, svc.GoName)
+		}
+	}
+
+	writeInprocClient(w, assertTypes, serverType, alias, allMethods)
+}
+
+func writeCombinedInterface(w func(string, ...any), name string, services []*protogen.Service) {
+	w("// %s is the combined interface for in-process consumers.", name)
+	w("type %s interface {", name)
+
+	for _, svc := range services {
+		w("	%s", svc.GoName)
+	}
+
+	w("}")
+	w("")
 }
 
 func writeContractHeader(w func(string, ...any), source, pkg, alias, imp string) {
@@ -104,15 +149,19 @@ func writeInterface(w func(string, ...any), svcName, alias string, methods []*pr
 	w("")
 }
 
-func writeInprocClient(w func(string, ...any), svcName, alias string, methods []*protogen.Method) {
-	w("var _ %s = (*InprocClient)(nil)", svcName)
+func writeInprocClient(w func(string, ...any), assertTypes []string, serverType, alias string, methods []*protogen.Method) {
+	for _, t := range assertTypes {
+		w("var _ %s = (*InprocClient)(nil)", t)
+	}
+
 	w("")
-	w("type InprocClient struct{ server %s }", svcName)
+	w("type InprocClient struct{ server %s }", serverType)
 	w("")
-	w("func NewInprocClient(server %s) *InprocClient {", svcName)
+	w("func NewInprocClient(server %s) *InprocClient {", serverType)
 	w("	return &InprocClient{server: server}")
 	w("}")
 	w("")
+
 	for _, m := range methods {
 		inT := alias + "." + m.Input.GoIdent.GoName
 		outT := alias + "." + m.Output.GoIdent.GoName
@@ -206,7 +255,7 @@ func genEvents(gen *protogen.Plugin, f *protogen.File, pkg, alias, imp string, m
 		}
 		w(")")
 		w("")
-		w("var AllEvents = []string{")
+		w("var Topics = []string{")
 		for _, t := range topics {
 			w("	%s,", t.constName)
 		}
@@ -373,6 +422,12 @@ func lowerWords(s string) string {
 	}
 
 	return strings.Join(words, " ")
+}
+
+// pascalToSnake converts PascalCase to snake_case.
+// "AuthPublicService" → "auth_public_service"
+func pascalToSnake(s string) string {
+	return strings.ReplaceAll(lowerWords(s), " ", "_")
 }
 
 // isDigits reports whether s contains only ASCII digits.

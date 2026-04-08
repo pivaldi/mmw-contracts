@@ -9,25 +9,24 @@ import (
 	"github.com/pivaldi/mmw-contracts/gen/go/auth/v1/authv1connect"
 )
 
-// HTTPClient adapts authv1connect.AuthServiceClient to AuthService.
+// PublicHTTPClient adapts authv1connect.AuthPublicServiceClient to AuthPublicService.
 // Use it when the auth service runs in a separate process and must be reached
 // over HTTP (Connect protocol) rather than via an in-process call.
-type HTTPClient struct {
-	client authv1connect.AuthServiceClient
+type PublicHTTPClient struct {
+	client authv1connect.AuthPublicServiceClient
 }
 
-// compile-time assertion
-var _ AuthService = (*HTTPClient)(nil)
+var _ AuthPublicService = (*PublicHTTPClient)(nil)
 
-// NewHTTPClient wraps an authv1connect.AuthServiceClient so it satisfies
-// AuthService. Construct the underlying client with:
+// NewPublicHTTPClient wraps an authv1connect.AuthPublicServiceClient so it satisfies
+// AuthPublicService. Construct the underlying client with:
 //
-//	authv1connect.NewAuthServiceClient(&http.Client{}, "http://localhost:8091")
-func NewHTTPClient(client authv1connect.AuthServiceClient) *HTTPClient {
-	return &HTTPClient{client: client}
+//	authv1connect.NewAuthPublicServiceClient(&http.Client{}, "http://localhost:8091")
+func NewPublicHTTPClient(client authv1connect.AuthPublicServiceClient) *PublicHTTPClient {
+	return &PublicHTTPClient{client: client}
 }
 
-func (c *HTTPClient) Register(
+func (c *PublicHTTPClient) Register(
 	ctx context.Context, req *authv1.RegisterRequest) (*authv1.RegisterResponse, error) {
 	resp, err := c.client.Register(ctx, connect.NewRequest(req))
 	if err != nil {
@@ -37,7 +36,8 @@ func (c *HTTPClient) Register(
 	return resp.Msg, nil
 }
 
-func (c *HTTPClient) Login(ctx context.Context, req *authv1.LoginRequest) (*authv1.LoginResponse, error) {
+func (c *PublicHTTPClient) Login(
+	ctx context.Context, req *authv1.LoginRequest) (*authv1.LoginResponse, error) {
 	resp, err := c.client.Login(ctx, connect.NewRequest(req))
 	if err != nil {
 		return nil, fmt.Errorf("login: %w", err)
@@ -46,22 +46,7 @@ func (c *HTTPClient) Login(ctx context.Context, req *authv1.LoginRequest) (*auth
 	return resp.Msg, nil
 }
 
-// ValidateToken calls the auth service's ValidateToken RPC.
-// Returns an error if the token is invalid/expired or if the call fails.
-func (c *HTTPClient) ValidateToken(
-	ctx context.Context, req *authv1.ValidateTokenRequest) (*authv1.ValidateTokenResponse, error) {
-	resp, err := c.client.ValidateToken(ctx, connect.NewRequest(req))
-	if err != nil {
-		return nil, fmt.Errorf("validate token: %w", err)
-	}
-	if !resp.Msg.GetIsValid() {
-		return nil, fmt.Errorf("token is invalid or expired")
-	}
-
-	return resp.Msg, nil
-}
-
-func (c *HTTPClient) ChangePassword(
+func (c *PublicHTTPClient) ChangePassword(
 	ctx context.Context, req *authv1.ChangePasswordRequest) (*authv1.ChangePasswordResponse, error) {
 	resp, err := c.client.ChangePassword(ctx, connect.NewRequest(req))
 	if err != nil {
@@ -71,10 +56,43 @@ func (c *HTTPClient) ChangePassword(
 	return resp.Msg, nil
 }
 
-func (c *HTTPClient) DeleteUser(ctx context.Context, req *authv1.DeleteUserRequest) (*authv1.DeleteUserResponse, error) {
+func (c *PublicHTTPClient) DeleteUser(
+	ctx context.Context, req *authv1.DeleteUserRequest) (*authv1.DeleteUserResponse, error) {
 	resp, err := c.client.DeleteUser(ctx, connect.NewRequest(req))
 	if err != nil {
 		return nil, fmt.Errorf("delete user: %w", err)
+	}
+
+	return resp.Msg, nil
+}
+
+// PrivateHTTPClient adapts authv1connect.AuthPrivateServiceClient to AuthPrivateService.
+// Use it when the auth service runs in a separate process.
+type PrivateHTTPClient struct {
+	client authv1connect.AuthPrivateServiceClient
+}
+
+var _ AuthPrivateService = (*PrivateHTTPClient)(nil)
+
+// NewPrivateHTTPClient wraps an authv1connect.AuthPrivateServiceClient so it satisfies
+// AuthPrivateService. Construct the underlying client with:
+//
+//	authv1connect.NewAuthPrivateServiceClient(&http.Client{}, "http://localhost:8091")
+func NewPrivateHTTPClient(client authv1connect.AuthPrivateServiceClient) *PrivateHTTPClient {
+	return &PrivateHTTPClient{client: client}
+}
+
+// ValidateToken calls the auth service's ValidateToken RPC.
+// Returns an error if the token is invalid/expired or if the call fails.
+func (c *PrivateHTTPClient) ValidateToken(
+	ctx context.Context, req *authv1.ValidateTokenRequest) (*authv1.ValidateTokenResponse, error) {
+	resp, err := c.client.ValidateToken(ctx, connect.NewRequest(req))
+	if err != nil {
+		return nil, fmt.Errorf("validate token: %w", err)
+	}
+
+	if !resp.Msg.GetIsValid() {
+		return nil, fmt.Errorf("token is invalid or expired")
 	}
 
 	return resp.Msg, nil

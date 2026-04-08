@@ -880,14 +880,15 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"#AUTH_ERROR_CODE_INVALID_CREDENTIALS\x10\x03\x12!\n" +
 	"\x1dAUTH_ERROR_CODE_INVALID_TOKEN\x10\x04\x12\"\n" +
 	"\x1eAUTH_ERROR_CODE_USER_NOT_FOUND\x10\x05\x12'\n" +
-	"#AUTH_ERROR_CODE_USER_ALREADY_EXISTS\x10\x062\xf0\x02\n" +
-	"\vAuthService\x12?\n" +
+	"#AUTH_ERROR_CODE_USER_ALREADY_EXISTS\x10\x062\xa6\x02\n" +
+	"\x11AuthPublicService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
-	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12N\n" +
-	"\rValidateToken\x12\x1d.auth.v1.ValidateTokenRequest\x1a\x1e.auth.v1.ValidateTokenResponse\x12Q\n" +
+	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12Q\n" +
 	"\x0eChangePassword\x12\x1e.auth.v1.ChangePasswordRequest\x1a\x1f.auth.v1.ChangePasswordResponse\x12E\n" +
 	"\n" +
-	"DeleteUser\x12\x1a.auth.v1.DeleteUserRequest\x1a\x1b.auth.v1.DeleteUserResponseB8Z6github.com/pivaldi/mmw-contracts/gen/go/auth/v1;authv1b\x06proto3"
+	"DeleteUser\x12\x1a.auth.v1.DeleteUserRequest\x1a\x1b.auth.v1.DeleteUserResponse2d\n" +
+	"\x12AuthPrivateService\x12N\n" +
+	"\rValidateToken\x12\x1d.auth.v1.ValidateTokenRequest\x1a\x1e.auth.v1.ValidateTokenResponseB8Z6github.com/pivaldi/mmw-contracts/gen/go/auth/v1;authv1b\x06proto3"
 
 var (
 	file_auth_v1_auth_proto_rawDescOnce sync.Once
@@ -927,16 +928,16 @@ var file_auth_v1_auth_proto_depIdxs = []int32{
 	16, // 1: auth.v1.UserDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
 	16, // 2: auth.v1.PasswordChangedEvent.changed_at:type_name -> google.protobuf.Timestamp
 	16, // 3: auth.v1.UserLoggedInEvent.logged_in_at:type_name -> google.protobuf.Timestamp
-	1,  // 4: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
-	3,  // 5: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	5,  // 6: auth.v1.AuthService.ValidateToken:input_type -> auth.v1.ValidateTokenRequest
-	7,  // 7: auth.v1.AuthService.ChangePassword:input_type -> auth.v1.ChangePasswordRequest
-	9,  // 8: auth.v1.AuthService.DeleteUser:input_type -> auth.v1.DeleteUserRequest
-	2,  // 9: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	4,  // 10: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
-	6,  // 11: auth.v1.AuthService.ValidateToken:output_type -> auth.v1.ValidateTokenResponse
-	8,  // 12: auth.v1.AuthService.ChangePassword:output_type -> auth.v1.ChangePasswordResponse
-	10, // 13: auth.v1.AuthService.DeleteUser:output_type -> auth.v1.DeleteUserResponse
+	1,  // 4: auth.v1.AuthPublicService.Register:input_type -> auth.v1.RegisterRequest
+	3,  // 5: auth.v1.AuthPublicService.Login:input_type -> auth.v1.LoginRequest
+	7,  // 6: auth.v1.AuthPublicService.ChangePassword:input_type -> auth.v1.ChangePasswordRequest
+	9,  // 7: auth.v1.AuthPublicService.DeleteUser:input_type -> auth.v1.DeleteUserRequest
+	5,  // 8: auth.v1.AuthPrivateService.ValidateToken:input_type -> auth.v1.ValidateTokenRequest
+	2,  // 9: auth.v1.AuthPublicService.Register:output_type -> auth.v1.RegisterResponse
+	4,  // 10: auth.v1.AuthPublicService.Login:output_type -> auth.v1.LoginResponse
+	8,  // 11: auth.v1.AuthPublicService.ChangePassword:output_type -> auth.v1.ChangePasswordResponse
+	10, // 12: auth.v1.AuthPublicService.DeleteUser:output_type -> auth.v1.DeleteUserResponse
+	6,  // 13: auth.v1.AuthPrivateService.ValidateToken:output_type -> auth.v1.ValidateTokenResponse
 	9,  // [9:14] is the sub-list for method output_type
 	4,  // [4:9] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
@@ -957,7 +958,7 @@ func file_auth_v1_auth_proto_init() {
 			NumEnums:      1,
 			NumMessages:   15,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_auth_v1_auth_proto_goTypes,
 		DependencyIndexes: file_auth_v1_auth_proto_depIdxs,

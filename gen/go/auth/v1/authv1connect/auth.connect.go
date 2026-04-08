@@ -21,8 +21,10 @@ import (
 const _ = connect.IsAtLeastVersion1_13_0
 
 const (
-	// AuthServiceName is the fully-qualified name of the AuthService service.
-	AuthServiceName = "auth.v1.AuthService"
+	// AuthPublicServiceName is the fully-qualified name of the AuthPublicService service.
+	AuthPublicServiceName = "auth.v1.AuthPublicService"
+	// AuthPrivateServiceName is the fully-qualified name of the AuthPrivateService service.
+	AuthPrivateServiceName = "auth.v1.AuthPrivateService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -33,200 +35,246 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// AuthServiceRegisterProcedure is the fully-qualified name of the AuthService's Register RPC.
-	AuthServiceRegisterProcedure = "/auth.v1.AuthService/Register"
-	// AuthServiceLoginProcedure is the fully-qualified name of the AuthService's Login RPC.
-	AuthServiceLoginProcedure = "/auth.v1.AuthService/Login"
-	// AuthServiceValidateTokenProcedure is the fully-qualified name of the AuthService's ValidateToken
-	// RPC.
-	AuthServiceValidateTokenProcedure = "/auth.v1.AuthService/ValidateToken"
-	// AuthServiceChangePasswordProcedure is the fully-qualified name of the AuthService's
+	// AuthPublicServiceRegisterProcedure is the fully-qualified name of the AuthPublicService's
+	// Register RPC.
+	AuthPublicServiceRegisterProcedure = "/auth.v1.AuthPublicService/Register"
+	// AuthPublicServiceLoginProcedure is the fully-qualified name of the AuthPublicService's Login RPC.
+	AuthPublicServiceLoginProcedure = "/auth.v1.AuthPublicService/Login"
+	// AuthPublicServiceChangePasswordProcedure is the fully-qualified name of the AuthPublicService's
 	// ChangePassword RPC.
-	AuthServiceChangePasswordProcedure = "/auth.v1.AuthService/ChangePassword"
-	// AuthServiceDeleteUserProcedure is the fully-qualified name of the AuthService's DeleteUser RPC.
-	AuthServiceDeleteUserProcedure = "/auth.v1.AuthService/DeleteUser"
+	AuthPublicServiceChangePasswordProcedure = "/auth.v1.AuthPublicService/ChangePassword"
+	// AuthPublicServiceDeleteUserProcedure is the fully-qualified name of the AuthPublicService's
+	// DeleteUser RPC.
+	AuthPublicServiceDeleteUserProcedure = "/auth.v1.AuthPublicService/DeleteUser"
+	// AuthPrivateServiceValidateTokenProcedure is the fully-qualified name of the AuthPrivateService's
+	// ValidateToken RPC.
+	AuthPrivateServiceValidateTokenProcedure = "/auth.v1.AuthPrivateService/ValidateToken"
 )
 
-// AuthServiceClient is a client for the auth.v1.AuthService service.
-type AuthServiceClient interface {
+// AuthPublicServiceClient is a client for the auth.v1.AuthPublicService service.
+type AuthPublicServiceClient interface {
 	// Register creates a new user account.
 	Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error)
 	// Login authenticates a user and returns a session token.
 	Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error)
-	// ValidateToken checks if a token is valid and returns the user's identity.
-	ValidateToken(context.Context, *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error)
 	// ChangePassword updates a user's password after verifying the old one.
 	ChangePassword(context.Context, *connect.Request[v1.ChangePasswordRequest]) (*connect.Response[v1.ChangePasswordResponse], error)
 	// DeleteUser removes a user from the system.
 	DeleteUser(context.Context, *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error)
 }
 
-// NewAuthServiceClient constructs a client for the auth.v1.AuthService service. By default, it uses
-// the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
-// uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the connect.WithGRPC() or
-// connect.WithGRPCWeb() options.
+// NewAuthPublicServiceClient constructs a client for the auth.v1.AuthPublicService service. By
+// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
+// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// connect.WithGRPC() or connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewAuthServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) AuthServiceClient {
+func NewAuthPublicServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) AuthPublicServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	authServiceMethods := v1.File_auth_v1_auth_proto.Services().ByName("AuthService").Methods()
-	return &authServiceClient{
+	authPublicServiceMethods := v1.File_auth_v1_auth_proto.Services().ByName("AuthPublicService").Methods()
+	return &authPublicServiceClient{
 		register: connect.NewClient[v1.RegisterRequest, v1.RegisterResponse](
 			httpClient,
-			baseURL+AuthServiceRegisterProcedure,
-			connect.WithSchema(authServiceMethods.ByName("Register")),
+			baseURL+AuthPublicServiceRegisterProcedure,
+			connect.WithSchema(authPublicServiceMethods.ByName("Register")),
 			connect.WithClientOptions(opts...),
 		),
 		login: connect.NewClient[v1.LoginRequest, v1.LoginResponse](
 			httpClient,
-			baseURL+AuthServiceLoginProcedure,
-			connect.WithSchema(authServiceMethods.ByName("Login")),
-			connect.WithClientOptions(opts...),
-		),
-		validateToken: connect.NewClient[v1.ValidateTokenRequest, v1.ValidateTokenResponse](
-			httpClient,
-			baseURL+AuthServiceValidateTokenProcedure,
-			connect.WithSchema(authServiceMethods.ByName("ValidateToken")),
+			baseURL+AuthPublicServiceLoginProcedure,
+			connect.WithSchema(authPublicServiceMethods.ByName("Login")),
 			connect.WithClientOptions(opts...),
 		),
 		changePassword: connect.NewClient[v1.ChangePasswordRequest, v1.ChangePasswordResponse](
 			httpClient,
-			baseURL+AuthServiceChangePasswordProcedure,
-			connect.WithSchema(authServiceMethods.ByName("ChangePassword")),
+			baseURL+AuthPublicServiceChangePasswordProcedure,
+			connect.WithSchema(authPublicServiceMethods.ByName("ChangePassword")),
 			connect.WithClientOptions(opts...),
 		),
 		deleteUser: connect.NewClient[v1.DeleteUserRequest, v1.DeleteUserResponse](
 			httpClient,
-			baseURL+AuthServiceDeleteUserProcedure,
-			connect.WithSchema(authServiceMethods.ByName("DeleteUser")),
+			baseURL+AuthPublicServiceDeleteUserProcedure,
+			connect.WithSchema(authPublicServiceMethods.ByName("DeleteUser")),
 			connect.WithClientOptions(opts...),
 		),
 	}
 }
 
-// authServiceClient implements AuthServiceClient.
-type authServiceClient struct {
+// authPublicServiceClient implements AuthPublicServiceClient.
+type authPublicServiceClient struct {
 	register       *connect.Client[v1.RegisterRequest, v1.RegisterResponse]
 	login          *connect.Client[v1.LoginRequest, v1.LoginResponse]
-	validateToken  *connect.Client[v1.ValidateTokenRequest, v1.ValidateTokenResponse]
 	changePassword *connect.Client[v1.ChangePasswordRequest, v1.ChangePasswordResponse]
 	deleteUser     *connect.Client[v1.DeleteUserRequest, v1.DeleteUserResponse]
 }
 
-// Register calls auth.v1.AuthService.Register.
-func (c *authServiceClient) Register(ctx context.Context, req *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error) {
+// Register calls auth.v1.AuthPublicService.Register.
+func (c *authPublicServiceClient) Register(ctx context.Context, req *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error) {
 	return c.register.CallUnary(ctx, req)
 }
 
-// Login calls auth.v1.AuthService.Login.
-func (c *authServiceClient) Login(ctx context.Context, req *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error) {
+// Login calls auth.v1.AuthPublicService.Login.
+func (c *authPublicServiceClient) Login(ctx context.Context, req *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error) {
 	return c.login.CallUnary(ctx, req)
 }
 
-// ValidateToken calls auth.v1.AuthService.ValidateToken.
-func (c *authServiceClient) ValidateToken(ctx context.Context, req *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error) {
-	return c.validateToken.CallUnary(ctx, req)
-}
-
-// ChangePassword calls auth.v1.AuthService.ChangePassword.
-func (c *authServiceClient) ChangePassword(ctx context.Context, req *connect.Request[v1.ChangePasswordRequest]) (*connect.Response[v1.ChangePasswordResponse], error) {
+// ChangePassword calls auth.v1.AuthPublicService.ChangePassword.
+func (c *authPublicServiceClient) ChangePassword(ctx context.Context, req *connect.Request[v1.ChangePasswordRequest]) (*connect.Response[v1.ChangePasswordResponse], error) {
 	return c.changePassword.CallUnary(ctx, req)
 }
 
-// DeleteUser calls auth.v1.AuthService.DeleteUser.
-func (c *authServiceClient) DeleteUser(ctx context.Context, req *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error) {
+// DeleteUser calls auth.v1.AuthPublicService.DeleteUser.
+func (c *authPublicServiceClient) DeleteUser(ctx context.Context, req *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error) {
 	return c.deleteUser.CallUnary(ctx, req)
 }
 
-// AuthServiceHandler is an implementation of the auth.v1.AuthService service.
-type AuthServiceHandler interface {
+// AuthPublicServiceHandler is an implementation of the auth.v1.AuthPublicService service.
+type AuthPublicServiceHandler interface {
 	// Register creates a new user account.
 	Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error)
 	// Login authenticates a user and returns a session token.
 	Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error)
-	// ValidateToken checks if a token is valid and returns the user's identity.
-	ValidateToken(context.Context, *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error)
 	// ChangePassword updates a user's password after verifying the old one.
 	ChangePassword(context.Context, *connect.Request[v1.ChangePasswordRequest]) (*connect.Response[v1.ChangePasswordResponse], error)
 	// DeleteUser removes a user from the system.
 	DeleteUser(context.Context, *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error)
 }
 
-// NewAuthServiceHandler builds an HTTP handler from the service implementation. It returns the path
-// on which to mount the handler and the handler itself.
+// NewAuthPublicServiceHandler builds an HTTP handler from the service implementation. It returns
+// the path on which to mount the handler and the handler itself.
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	authServiceMethods := v1.File_auth_v1_auth_proto.Services().ByName("AuthService").Methods()
-	authServiceRegisterHandler := connect.NewUnaryHandler(
-		AuthServiceRegisterProcedure,
+func NewAuthPublicServiceHandler(svc AuthPublicServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	authPublicServiceMethods := v1.File_auth_v1_auth_proto.Services().ByName("AuthPublicService").Methods()
+	authPublicServiceRegisterHandler := connect.NewUnaryHandler(
+		AuthPublicServiceRegisterProcedure,
 		svc.Register,
-		connect.WithSchema(authServiceMethods.ByName("Register")),
+		connect.WithSchema(authPublicServiceMethods.ByName("Register")),
 		connect.WithHandlerOptions(opts...),
 	)
-	authServiceLoginHandler := connect.NewUnaryHandler(
-		AuthServiceLoginProcedure,
+	authPublicServiceLoginHandler := connect.NewUnaryHandler(
+		AuthPublicServiceLoginProcedure,
 		svc.Login,
-		connect.WithSchema(authServiceMethods.ByName("Login")),
+		connect.WithSchema(authPublicServiceMethods.ByName("Login")),
 		connect.WithHandlerOptions(opts...),
 	)
-	authServiceValidateTokenHandler := connect.NewUnaryHandler(
-		AuthServiceValidateTokenProcedure,
-		svc.ValidateToken,
-		connect.WithSchema(authServiceMethods.ByName("ValidateToken")),
-		connect.WithHandlerOptions(opts...),
-	)
-	authServiceChangePasswordHandler := connect.NewUnaryHandler(
-		AuthServiceChangePasswordProcedure,
+	authPublicServiceChangePasswordHandler := connect.NewUnaryHandler(
+		AuthPublicServiceChangePasswordProcedure,
 		svc.ChangePassword,
-		connect.WithSchema(authServiceMethods.ByName("ChangePassword")),
+		connect.WithSchema(authPublicServiceMethods.ByName("ChangePassword")),
 		connect.WithHandlerOptions(opts...),
 	)
-	authServiceDeleteUserHandler := connect.NewUnaryHandler(
-		AuthServiceDeleteUserProcedure,
+	authPublicServiceDeleteUserHandler := connect.NewUnaryHandler(
+		AuthPublicServiceDeleteUserProcedure,
 		svc.DeleteUser,
-		connect.WithSchema(authServiceMethods.ByName("DeleteUser")),
+		connect.WithSchema(authPublicServiceMethods.ByName("DeleteUser")),
 		connect.WithHandlerOptions(opts...),
 	)
-	return "/auth.v1.AuthService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/auth.v1.AuthPublicService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case AuthServiceRegisterProcedure:
-			authServiceRegisterHandler.ServeHTTP(w, r)
-		case AuthServiceLoginProcedure:
-			authServiceLoginHandler.ServeHTTP(w, r)
-		case AuthServiceValidateTokenProcedure:
-			authServiceValidateTokenHandler.ServeHTTP(w, r)
-		case AuthServiceChangePasswordProcedure:
-			authServiceChangePasswordHandler.ServeHTTP(w, r)
-		case AuthServiceDeleteUserProcedure:
-			authServiceDeleteUserHandler.ServeHTTP(w, r)
+		case AuthPublicServiceRegisterProcedure:
+			authPublicServiceRegisterHandler.ServeHTTP(w, r)
+		case AuthPublicServiceLoginProcedure:
+			authPublicServiceLoginHandler.ServeHTTP(w, r)
+		case AuthPublicServiceChangePasswordProcedure:
+			authPublicServiceChangePasswordHandler.ServeHTTP(w, r)
+		case AuthPublicServiceDeleteUserProcedure:
+			authPublicServiceDeleteUserHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
 	})
 }
 
-// UnimplementedAuthServiceHandler returns CodeUnimplemented from all methods.
-type UnimplementedAuthServiceHandler struct{}
+// UnimplementedAuthPublicServiceHandler returns CodeUnimplemented from all methods.
+type UnimplementedAuthPublicServiceHandler struct{}
 
-func (UnimplementedAuthServiceHandler) Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.Register is not implemented"))
+func (UnimplementedAuthPublicServiceHandler) Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthPublicService.Register is not implemented"))
 }
 
-func (UnimplementedAuthServiceHandler) Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.Login is not implemented"))
+func (UnimplementedAuthPublicServiceHandler) Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthPublicService.Login is not implemented"))
 }
 
-func (UnimplementedAuthServiceHandler) ValidateToken(context.Context, *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.ValidateToken is not implemented"))
+func (UnimplementedAuthPublicServiceHandler) ChangePassword(context.Context, *connect.Request[v1.ChangePasswordRequest]) (*connect.Response[v1.ChangePasswordResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthPublicService.ChangePassword is not implemented"))
 }
 
-func (UnimplementedAuthServiceHandler) ChangePassword(context.Context, *connect.Request[v1.ChangePasswordRequest]) (*connect.Response[v1.ChangePasswordResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.ChangePassword is not implemented"))
+func (UnimplementedAuthPublicServiceHandler) DeleteUser(context.Context, *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthPublicService.DeleteUser is not implemented"))
 }
 
-func (UnimplementedAuthServiceHandler) DeleteUser(context.Context, *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.DeleteUser is not implemented"))
+// AuthPrivateServiceClient is a client for the auth.v1.AuthPrivateService service.
+type AuthPrivateServiceClient interface {
+	// ValidateToken checks if a token is valid and returns the user's identity.
+	ValidateToken(context.Context, *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error)
+}
+
+// NewAuthPrivateServiceClient constructs a client for the auth.v1.AuthPrivateService service. By
+// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
+// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewAuthPrivateServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) AuthPrivateServiceClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	authPrivateServiceMethods := v1.File_auth_v1_auth_proto.Services().ByName("AuthPrivateService").Methods()
+	return &authPrivateServiceClient{
+		validateToken: connect.NewClient[v1.ValidateTokenRequest, v1.ValidateTokenResponse](
+			httpClient,
+			baseURL+AuthPrivateServiceValidateTokenProcedure,
+			connect.WithSchema(authPrivateServiceMethods.ByName("ValidateToken")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// authPrivateServiceClient implements AuthPrivateServiceClient.
+type authPrivateServiceClient struct {
+	validateToken *connect.Client[v1.ValidateTokenRequest, v1.ValidateTokenResponse]
+}
+
+// ValidateToken calls auth.v1.AuthPrivateService.ValidateToken.
+func (c *authPrivateServiceClient) ValidateToken(ctx context.Context, req *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error) {
+	return c.validateToken.CallUnary(ctx, req)
+}
+
+// AuthPrivateServiceHandler is an implementation of the auth.v1.AuthPrivateService service.
+type AuthPrivateServiceHandler interface {
+	// ValidateToken checks if a token is valid and returns the user's identity.
+	ValidateToken(context.Context, *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error)
+}
+
+// NewAuthPrivateServiceHandler builds an HTTP handler from the service implementation. It returns
+// the path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewAuthPrivateServiceHandler(svc AuthPrivateServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	authPrivateServiceMethods := v1.File_auth_v1_auth_proto.Services().ByName("AuthPrivateService").Methods()
+	authPrivateServiceValidateTokenHandler := connect.NewUnaryHandler(
+		AuthPrivateServiceValidateTokenProcedure,
+		svc.ValidateToken,
+		connect.WithSchema(authPrivateServiceMethods.ByName("ValidateToken")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/auth.v1.AuthPrivateService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case AuthPrivateServiceValidateTokenProcedure:
+			authPrivateServiceValidateTokenHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedAuthPrivateServiceHandler returns CodeUnimplemented from all methods.
+type UnimplementedAuthPrivateServiceHandler struct{}
+
+func (UnimplementedAuthPrivateServiceHandler) ValidateToken(context.Context, *connect.Request[v1.ValidateTokenRequest]) (*connect.Response[v1.ValidateTokenResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthPrivateService.ValidateToken is not implemented"))
 }

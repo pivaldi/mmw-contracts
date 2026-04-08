@@ -7,17 +7,17 @@ import { ChangePasswordRequest, ChangePasswordResponse, DeleteUserRequest, Delet
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
- * AuthService provides functionalities for user authentication.
+ * AuthPublicService exposes endpoints reachable by unauthenticated clients.
  *
- * @generated from service auth.v1.AuthService
+ * @generated from service auth.v1.AuthPublicService
  */
-export const AuthService = {
-  typeName: "auth.v1.AuthService",
+export const AuthPublicService = {
+  typeName: "auth.v1.AuthPublicService",
   methods: {
     /**
      * Register creates a new user account.
      *
-     * @generated from rpc auth.v1.AuthService.Register
+     * @generated from rpc auth.v1.AuthPublicService.Register
      */
     register: {
       name: "Register",
@@ -28,7 +28,7 @@ export const AuthService = {
     /**
      * Login authenticates a user and returns a session token.
      *
-     * @generated from rpc auth.v1.AuthService.Login
+     * @generated from rpc auth.v1.AuthPublicService.Login
      */
     login: {
       name: "Login",
@@ -37,20 +37,9 @@ export const AuthService = {
       kind: MethodKind.Unary,
     },
     /**
-     * ValidateToken checks if a token is valid and returns the user's identity.
-     *
-     * @generated from rpc auth.v1.AuthService.ValidateToken
-     */
-    validateToken: {
-      name: "ValidateToken",
-      I: ValidateTokenRequest,
-      O: ValidateTokenResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
      * ChangePassword updates a user's password after verifying the old one.
      *
-     * @generated from rpc auth.v1.AuthService.ChangePassword
+     * @generated from rpc auth.v1.AuthPublicService.ChangePassword
      */
     changePassword: {
       name: "ChangePassword",
@@ -61,12 +50,34 @@ export const AuthService = {
     /**
      * DeleteUser removes a user from the system.
      *
-     * @generated from rpc auth.v1.AuthService.DeleteUser
+     * @generated from rpc auth.v1.AuthPublicService.DeleteUser
      */
     deleteUser: {
       name: "DeleteUser",
       I: DeleteUserRequest,
       O: DeleteUserResponse,
+      kind: MethodKind.Unary,
+    },
+  }
+} as const;
+
+/**
+ * AuthPrivateService exposes endpoints reachable only by internal services.
+ *
+ * @generated from service auth.v1.AuthPrivateService
+ */
+export const AuthPrivateService = {
+  typeName: "auth.v1.AuthPrivateService",
+  methods: {
+    /**
+     * ValidateToken checks if a token is valid and returns the user's identity.
+     *
+     * @generated from rpc auth.v1.AuthPrivateService.ValidateToken
+     */
+    validateToken: {
+      name: "ValidateToken",
+      I: ValidateTokenRequest,
+      O: ValidateTokenResponse,
       kind: MethodKind.Unary,
     },
   }

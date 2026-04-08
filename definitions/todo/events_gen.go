@@ -14,7 +14,7 @@ const (
 	TopicUserTaskDeleted   = "todo.userTask.deleted.v1"
 )
 
-var AllEvents = []string{
+var Topics = []string{
 	TopicUserTasksDeleted,
 	TopicUserTaskCreated,
 	TopicUserTaskUpdated,

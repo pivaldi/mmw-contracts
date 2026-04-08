@@ -12,7 +12,7 @@ const (
 	TopicUserLoggedIn    = "auth.user.logged_in.v1"
 )
 
-var AllEvents = []string{
+var Topics = []string{
 	TopicUserRegistered,
 	TopicUserDeleted,
 	TopicPasswordChanged,

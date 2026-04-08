@@ -7,22 +7,25 @@ import "options/v1/options.proto";
 
 option go_package = "github.com/pivaldi/mmw-contracts/gen/go/auth/v1;authv1";
 
-// AuthService provides functionalities for user authentication.
-service AuthService {
+// AuthPublicService exposes endpoints reachable by unauthenticated clients.
+service AuthPublicService {
   // Register creates a new user account.
   rpc Register(RegisterRequest) returns (RegisterResponse);
 
   // Login authenticates a user and returns a session token.
   rpc Login(LoginRequest) returns (LoginResponse);
 
-  // ValidateToken checks if a token is valid and returns the user's identity.
-  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
-
   // ChangePassword updates a user's password after verifying the old one.
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
 
   // DeleteUser removes a user from the system.
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+// AuthPrivateService exposes endpoints reachable only by internal services.
+service AuthPrivateService {
+  // ValidateToken checks if a token is valid and returns the user's identity.
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
 }
 
 // --- Register ---
