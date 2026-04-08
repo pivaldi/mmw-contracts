@@ -1,10 +1,10 @@
 // protoc-gen-go-contracts is a buf/protoc plugin that generates the boilerplate
 // definitions layer from proto service definitions:
 //
-//	definitions/{domain}/contract.go  — interface, InprocClient, NoopService
-//	definitions/{domain}/errors.go    — const aliases for *ErrorCode enum values
-//	definitions/{domain}/events.go    — TopicXxx constants, Topics slice, type aliases
-//	                                    (requires (options.v1.topic) on each *Event message)
+//	definitions/{domain}/{snake_service}_contract_gen.go  — interface, NoopService
+//	definitions/{domain}/errors_gen.go                    — const aliases for *ErrorCode enum values
+//	definitions/{domain}/events_gen.go                    — TopicXxx constants, Topics slice, type aliases
+//	                                                        (requires (options.v1.topic) on each *Event message)
 //
 // Build and install:
 //
@@ -55,10 +55,6 @@ func processFile(gen *protogen.Plugin, f *protogen.File) {
 		genContract(gen, f, pkg, alias, imp, svc)
 	}
 
-	if len(f.Services) > 0 {
-		genInprocClient(gen, f, pkg, alias, imp)
-	}
-
 	if e := errorCodeEnum(f); e != nil {
 		genErrors(gen, f, pkg, alias, imp, e)
 	}
@@ -81,47 +77,6 @@ func genContract(gen *protogen.Plugin, f *protogen.File, pkg, alias, imp string,
 	writeContractHeader(w, f.Desc.Path(), pkg, alias, imp)
 	writeInterface(w, svcName, alias, svc.Methods)
 	writeNoopService(w, svcName, noopName, errVar, alias, svc.Methods)
-}
-
-func genInprocClient(gen *protogen.Plugin, f *protogen.File, pkg, alias, imp string) {
-	g := gen.NewGeneratedFile("definitions/"+pkg+"/inproc_client_gen.go", "")
-	w := printer(g)
-
-	var allMethods []*protogen.Method
-	for _, svc := range f.Services {
-		allMethods = append(allMethods, svc.Methods...)
-	}
-
-	writeContractHeader(w, f.Desc.Path(), pkg, alias, imp)
-
-	var serverType string
-	var assertTypes []string
-
-	if len(f.Services) == 1 {
-		serverType = f.Services[0].GoName
-		assertTypes = []string{serverType}
-	} else {
-		serverType = strings.ToUpper(pkg[:1]) + pkg[1:] + "Service"
-		writeCombinedInterface(w, serverType, f.Services)
-
-		for _, svc := range f.Services {
-			assertTypes = append(assertTypes, svc.GoName)
-		}
-	}
-
-	writeInprocClient(w, assertTypes, serverType, alias, allMethods)
-}
-
-func writeCombinedInterface(w func(string, ...any), name string, services []*protogen.Service) {
-	w("// %s is the combined interface for in-process consumers.", name)
-	w("type %s interface {", name)
-
-	for _, svc := range services {
-		w("	%s", svc.GoName)
-	}
-
-	w("}")
-	w("")
 }
 
 func writeContractHeader(w func(string, ...any), source, pkg, alias, imp string) {
@@ -147,33 +102,6 @@ func writeInterface(w func(string, ...any), svcName, alias string, methods []*pr
 	}
 	w("}")
 	w("")
-}
-
-func writeInprocClient(w func(string, ...any), assertTypes []string, serverType, alias string, methods []*protogen.Method) {
-	for _, t := range assertTypes {
-		w("var _ %s = (*InprocClient)(nil)", t)
-	}
-
-	w("")
-	w("type InprocClient struct{ server %s }", serverType)
-	w("")
-	w("func NewInprocClient(server %s) *InprocClient {", serverType)
-	w("	return &InprocClient{server: server}")
-	w("}")
-	w("")
-
-	for _, m := range methods {
-		inT := alias + "." + m.Input.GoIdent.GoName
-		outT := alias + "." + m.Output.GoIdent.GoName
-		w("func (c *InprocClient) %s(ctx context.Context, req *%s) (*%s, error) {", m.GoName, inT, outT)
-		w("	resp, err := c.server.%s(ctx, req)", m.GoName)
-		w("	if err != nil {")
-		w(`		return nil, fmt.Errorf("%w", err)`)
-		w("	}")
-		w("	return resp, nil")
-		w("}")
-		w("")
-	}
 }
 
 func writeNoopService(w func(string, ...any), svcName, noopName, errVar, alias string, methods []*protogen.Method) {
