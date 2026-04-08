@@ -1,16 +1,34 @@
 [settings]
 experimental = true
-# quiet = true
+quiet = true
 
 [tools]
 go = "latest"
 buf = "latest"
+"gp:connectrpc.com/connect/cmd/protoc-gen-connect-go" = "latest"
 
-[task.build]
+[tasks.setup]
+description = "Download buf dependencies"
+run = "buf mod update"
+
+[tasks.build]
 description = "build and install the buf/protoc plugin protoc-gen-go-contracts"
+sources = ["./cmd/protoc-gen-go-contracts/*.go"]
 run="go build -o $(go env GOBIN)/protoc-gen-go-contracts ./cmd/protoc-gen-go-contracts"
 
 [tasks.generate]
 depends = ["build"]
 description = "Generate the protocol buffer code"
 run = "buf generate"
+
+[tasks.lint]
+description = "Lint protobuf files"
+run = "buf lint proto"
+
+[tasks.format]
+description = "Format protobuf files"
+run = "find ./proto/ -name '*.proto' -exec buf format -w {} \\;"
+
+[tasks.breaking]
+description = "Check for breaking changes in protobuf"
+run = "buf breaking --against '.git#branch=master' proto/*"

@@ -27,11 +27,13 @@ func NewHTTPClient(client authv1connect.AuthServiceClient) *HTTPClient {
 	return &HTTPClient{client: client}
 }
 
-func (c *HTTPClient) Register(ctx context.Context, req *authv1.RegisterRequest) (*authv1.RegisterResponse, error) {
+func (c *HTTPClient) Register(
+	ctx context.Context, req *authv1.RegisterRequest) (*authv1.RegisterResponse, error) {
 	resp, err := c.client.Register(ctx, connect.NewRequest(req))
 	if err != nil {
 		return nil, fmt.Errorf("register: %w", err)
 	}
+
 	return resp.Msg, nil
 }
 
@@ -40,12 +42,14 @@ func (c *HTTPClient) Login(ctx context.Context, req *authv1.LoginRequest) (*auth
 	if err != nil {
 		return nil, fmt.Errorf("login: %w", err)
 	}
+
 	return resp.Msg, nil
 }
 
 // ValidateToken calls the auth service's ValidateToken RPC.
 // Returns an error if the token is invalid/expired or if the call fails.
-func (c *HTTPClient) ValidateToken(ctx context.Context, req *authv1.ValidateTokenRequest) (*authv1.ValidateTokenResponse, error) {
+func (c *HTTPClient) ValidateToken(
+	ctx context.Context, req *authv1.ValidateTokenRequest) (*authv1.ValidateTokenResponse, error) {
 	resp, err := c.client.ValidateToken(ctx, connect.NewRequest(req))
 	if err != nil {
 		return nil, fmt.Errorf("validate token: %w", err)
@@ -53,14 +57,17 @@ func (c *HTTPClient) ValidateToken(ctx context.Context, req *authv1.ValidateToke
 	if !resp.Msg.GetIsValid() {
 		return nil, fmt.Errorf("token is invalid or expired")
 	}
+
 	return resp.Msg, nil
 }
 
-func (c *HTTPClient) ChangePassword(ctx context.Context, req *authv1.ChangePasswordRequest) (*authv1.ChangePasswordResponse, error) {
+func (c *HTTPClient) ChangePassword(
+	ctx context.Context, req *authv1.ChangePasswordRequest) (*authv1.ChangePasswordResponse, error) {
 	resp, err := c.client.ChangePassword(ctx, connect.NewRequest(req))
 	if err != nil {
 		return nil, fmt.Errorf("change password: %w", err)
 	}
+
 	return resp.Msg, nil
 }
 
@@ -69,5 +76,6 @@ func (c *HTTPClient) DeleteUser(ctx context.Context, req *authv1.DeleteUserReque
 	if err != nil {
 		return nil, fmt.Errorf("delete user: %w", err)
 	}
+
 	return resp.Msg, nil
 }
