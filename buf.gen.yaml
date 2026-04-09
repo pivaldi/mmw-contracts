@@ -1,29 +1,34 @@
 # contracts/buf.gen.yaml
 version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/pivaldi/mmw-contracts/go/network
 inputs:
   - directory: proto # contracts/proto/ is the buf module
 plugins:
   # Go: protobuf types
   - remote: buf.build/protocolbuffers/go
-    out: gen/go # → contracts/gen/go/
+    out: go/network # → contracts/go/network/
     opt: paths=source_relative
   # Go: Connect RPC stubs
   - remote: buf.build/connectrpc/go
-    out: gen/go # → contracts/gen/go/
+    out: go/network # → contracts/go/network/
     opt: paths=source_relative
   # TypeScript: protobuf types (Protobuf-ES)
   - remote: buf.build/bufbuild/es
-    out: gen/ts # → contracts/gen/ts/
+    out: ts # → contracts/ts/
     opt:
       - target=ts
       - import_extension=none # strip .js from imports — works with any bundler (webpack, vite, esbuild)
   # TypeScript: Connect RPC stubs
   - remote: buf.build/connectrpc/es
-    out: gen/ts # → contracts/gen/ts/
+    out: ts # → contracts/ts/
     opt:
       - target=ts
       - import_extension=none # strip .js from imports — works with any bundler (webpack, vite, esbuild)
-  # Go: definitions layer (interface + InprocClient + NoopService + errors + event aliases)
+  # Go: application layer (interface + NoopService + errors + event aliases)
   # Build first: go build -o $(go env GOPATH)/bin/protoc-gen-go-contracts ./cmd/protoc-gen-go-contracts
   - local: protoc-gen-go-contracts
     out: .
